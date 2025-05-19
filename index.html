@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <header>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calabar Night Bites - Street Food Delivery</title>
+    <link rel="stylesheet" href="styles.css" />
+  </header>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">Calabar<span>NightBites</span></a>
+        <div class="nav-links">
+          <a href="index.html" class="active">Home</a>
+          <a href="menu.html">Menu</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <button class="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <div class="hero-carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url('img/')">
+          <div class="carousel-content">
+            <h2>Authentic Calabar Street Food</h2>
+            <p>Delivered hot to your doorstep</p>
+            <a href="menu.html" class="btn">Order Now</a>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('img/')">
+          <div class="carousel-content">
+            <h2>Nightlife Specials</h2>
+            <p>Perfect meals for your late-night cravings</p>
+            <a href="menu.html" class="btn">View Menu</a>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('img/')">
+          <div class="carousel-content">
+            <h2>Local Vendors, Global Taste</h2>
+            <p>Supporting Calabar's best street food chefs</p>
+            <a href="about.html" class="btn">Our Story</a>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control prev" onclick="moveSlide(-1)">
+        &#10094;
+      </button>
+      <button class="carousel-control next" onclick="moveSlide(1)">
+        &#10095;
+      </button>
+      <div class="carousel-indicators">
+        <span class="indicator active" onclick="goToSlide(0)"></span>
+        <span class="indicator" onclick="goToSlide(1)"></span>
+        <span class="indicator" onclick="goToSlide(2)"></span>
+      </div>
+    </div>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 class="section-title">About Calabar Night Bites</h2>
+            <p>
+              Born from the vibrant nightlife of Calabar, we bring the authentic
+              taste of the city's street food right to your doorstep. Our
+              platform connects you with the best local vendors who have been
+              serving delicious meals for generations.
+            </p>
+            <p>
+              We understand the night cravings and the need for quick,
+              delicious, and affordable meals after hours. That's why we've
+              curated a selection of the most popular street foods available for
+              delivery until 3AM.
+            </p>
+            <div class="about-stats">
+              <div class="stat">
+                <h3>50+</h3>
+                <p>Menu Items</p>
+              </div>
+              <div class="stat">
+                <h3>4</h3>
+                <p>Top Vendors</p>
+              </div>
+              <div class="stat">
+                <h3>24/7</h3>
+                <p>Delivery</p>
+              </div>
+            </div>
+          </div>
+          <div class="about-image">
+            <img src="img/sldr.png" alt="Calabar Market" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cart-preview" id="cartPreview">
+      <span id="cartCount">0</span> items - ₦<span id="cartTotal">0</span>
+      <button onclick="toggleCart()">View Cart</button>
+    </div>
+
+    <div class="flash-message" id="flashMessage"></div>
+
+    <div class="container">
+      <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'marians')">
+          Daddy K's
+        </button>
+        <button class="tab-button" onclick="openTab(event, 'bobos')">
+          Ifeco Kitchen
+        </button>
+        <button class="tab-button" onclick="openTab(event, 'ekemini')">
+          Chef Green
+        </button>
+        <button class="tab-button" onclick="openTab(event, 'calabarDelight')">
+          Calabar Delight
+        </button>
+      </div>
+
+      <div id="marians" class="tab-content" style="display: block">
+        <h2>Marian's Spot</h2>
+        <div class="menu-items">
+          <!-- Items will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <div id="bobos" class="tab-content">
+        <h2>Bobo's Joint</h2>
+        <div class="menu-items">
+          <!-- Items will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <div id="ekemini" class="tab-content">
+        <h2>Ekemini's Kitchen</h2>
+        <div class="menu-items">
+          <!-- Items will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <div id="calabarDelight" class="tab-content">
+        <h2>Calabar Delight</h2>
+        <div class="menu-items">
+          <!-- Items will be loaded here by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+      <div class="modal-content">
+        <span class="close" onclick="toggleCart()">&times;</span>
+        <h2>Your Order</h2>
+        <div class="cart-items" id="cartItems">
+          <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-summary">
+          <p>Subtotal: ₦<span id="subtotal">0</span></p>
+          <p>Service Fee: ₦<span id="serviceFee">300</span></p>
+          <p>Delivery Fee: ₦<span id="deliveryFee">500</span></p>
+          <p class="total">Total: ₦<span id="grandTotal">800</span></p>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Place Order</button>
+      </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="modal" id="checkoutModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeCheckout()">&times;</span>
+        <h2>Complete Your Order</h2>
+        <form id="deliveryForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" required />
+          </div>
+          <div class="form-group">
+            <label for="address">Delivery Address</label>
+            <textarea id="address" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="instructions">Special Instructions</label>
+            <textarea id="instructions"></textarea>
+          </div>
+          <button type="submit">Confirm Order</button>
+        </form>
+      </div>
+    </div>
+    <!-- Featured Items -->
+    <section class="featured-section">
+      <div class="container">
+        <h2 class="section-title">Featured Items</h2>
+        <p class="section-subtitle">Customer favorites this week</p>
+        <div class="featured-items">
+          <div class="featured-item">
+            <img
+              src="https://source.unsplash.com/random/400x300/?pepper+soup"
+              alt="Pepper Soup"
+            />
+            <div class="featured-info">
+              <h3>Pepper Soup</h3>
+              <p>Spicy assorted meat pepper soup</p>
+              <div class="featured-footer">
+                <span class="price">₦1,500</span>
+                <button class="add-to-cart" data-id="1" data-vendor="marians">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="featured-item">
+            <img
+              src="https://source.unsplash.com/random/400x300/?suya"
+              alt="Suya"
+            />
+            <div class="featured-info">
+              <h3>Suya</h3>
+              <p>Grilled spicy beef skewers</p>
+              <div class="featured-footer">
+                <span class="price">₦500</span>
+                <button class="add-to-cart" data-id="2" data-vendor="marians">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="featured-item">
+            <img
+              src="https://source.unsplash.com/random/400x300/?grilled+fish"
+              alt="Grilled Fish"
+            />
+            <div class="featured-info">
+              <h3>Grilled Fish</h3>
+              <p>Fresh fish grilled with spices</p>
+              <div class="featured-footer">
+                <span class="price">₦2,500</span>
+                <button class="add-to-cart" data-id="9" data-vendor="bobos">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="featured-item">
+            <img
+              src="https://source.unsplash.com/random/400x300/?edikang+ikong"
+              alt="Edikang Ikong"
+            />
+            <div class="featured-info">
+              <h3>Edikang Ikong</h3>
+              <p>Pumpkin leaves and waterleaf soup</p>
+              <div class="featured-footer">
+                <span class="price">₦2,200</span>
+                <button class="add-to-cart" data-id="17" data-vendor="ekemini">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <a href="menu.html" class="btn btn-outline">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <div class="container">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Real reviews from happy night owls</p>
+        <div class="testimonials">
+          <div class="testimonial">
+            <div class="testimonial-content">
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p>
+                "The pepper soup arrived piping hot at 2AM! Exactly what I
+                needed after a long night out. Marian's Spot never disappoints."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://randomuser.me/api/portraits/women/32.jpg"
+                alt="Chioma"
+              />
+              <h4>Chioma E.</h4>
+              <span>Regular Customer</span>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-content">
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <p>
+                "I love that I can get authentic Calabar dishes delivered to my
+                hotel. The abak atama tastes just like my grandmother makes it!"
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://randomuser.me/api/portraits/men/45.jpg"
+                alt="Emeka"
+              />
+              <h4>Emeka O.</h4>
+              <span>Tourist</span>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-content">
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p>
+                "As a night shift worker, this service is a lifesaver. Hot,
+                delicious food whenever I need it. The delivery is always on
+                time."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://randomuser.me/api/portraits/women/68.jpg"
+                alt="Amina"
+              />
+              <h4>Amina B.</h4>
+              <span>Night Nurse</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to satisfy your late-night cravings?</h2>
+        <p>Download our app for exclusive deals and faster ordering</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-app">
+            <i class="fab fa-apple"></i>
+            <span>Download on the<br /><strong>App Store</strong></span>
+          </a>
+          <a href="#" class="btn btn-app">
+            <i class="fab fa-google-play"></i>
+            <span>Get it on<br /><strong>Google Play</strong></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>Calabar Night Bites</h3>
+            <p>
+              Bringing Calabar's vibrant street food culture to your doorstep,
+              day or night.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="menu.html">Menu</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact Us</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 42 Marian Road, Calabar
+              </li>
+              <li><i class="fas fa-phone"></i> +234 812 345 6789</li>
+              <li>
+                <i class="fas fa-envelope"></i> info@calabarnightbites.com
+              </li>
+              <li><i class="fas fa-clock"></i> Open 24/7</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Newsletter</h3>
+            <p>Subscribe for weekly deals and updates</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 Calabar Night Bites. All Rights Reserved.</p>
+          <div class="payment-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-paypal"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calabar Night Bites - Street Food Delivery</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Calabar Night Bites</h1>
+      <p>Your favorite street food delivered to your doorstep</p>
+    </header>
+
+    <div class="cart-preview" id="cartPreview">
+      <span id="cartCount">0</span> items - ₦<span id="cartTotal">0</span>
+      <button onclick="toggleCart()">View Cart</button>
+    </div>
+
+    <div class="flash-message" id="flashMessage"></div>
+
+    <div class="container">
+      <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'marians')">
+          Marian's Spot
+        </button>
+        <button class="tab-button" onclick="openTab(event, 'bobos')">
+          Bobo's Joint
+        </button>
+        <button class="tab-button" onclick="openTab(event, 'ekemini')">
+          Ekemini's Kitchen
+        </button>
+        <button class="tab-button" onclick="openTab(event, 'calabarDelight')">
+          Calabar Delight
+        </button>
+      </div>
+
+      <div id="marians" class="tab-content" style="display: block">
+        <h2>Marian's Spot</h2>
+        <div class="menu-items">
+          <!-- Items will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <div id="bobos" class="tab-content">
+        <h2>Bobo's Joint</h2>
+        <div class="menu-items">
+          <!-- Items will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <div id="ekemini" class="tab-content">
+        <h2>Ekemini's Kitchen</h2>
+        <div class="menu-items">
+          <!-- Items will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <div id="calabarDelight" class="tab-content">
+        <h2>Calabar Delight</h2>
+        <div class="menu-items">
+          <!-- Items will be loaded here by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+      <div class="modal-content">
+        <span class="close" onclick="toggleCart()">&times;</span>
+        <h2>Your Order</h2>
+        <div class="cart-items" id="cartItems">
+          <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-summary">
+          <p>Subtotal: ₦<span id="subtotal">0</span></p>
+          <p>Service Fee: ₦<span id="serviceFee">300</span></p>
+          <p>Delivery Fee: ₦<span id="deliveryFee">500</span></p>
+          <p class="total">Total: ₦<span id="grandTotal">800</span></p>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Place Order</button>
+      </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="modal" id="checkoutModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeCheckout()">&times;</span>
+        <h2>Complete Your Order</h2>
+        <form id="deliveryForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" required />
+          </div>
+          <div class="form-group">
+            <label for="address">Delivery Address</label>
+            <textarea id="address" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="instructions">Special Instructions</label>
+            <textarea id="instructions"></textarea>
+          </div>
+          <button type="submit">Confirm Order</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
