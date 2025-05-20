@@ -9,7 +9,7 @@ const vendors = {
         description: "Spicy assorted meat pepper soup",
         price: 1500,
         minAmount: 1500,
-        image: "img/m1.jpg",
+        image: "img/about.jpg",
       },
       {
         id: 2,
