@@ -601,10 +601,6 @@ deliveryForm.addEventListener("submit", function (e) {
     ).innerHTML = `We'll call you at <strong>${phone}</strong> to confirm your order.`;
   }
 
-  /**
-   * Closes the confirmation modal by setting its display style to "none".
-   * This function assumes there is an element with the ID "confirmationModal" in the DOM.
-   */
   function closeConfirmationModal() {
     document.getElementById("confirmationModal").style.display = "none";
   }
@@ -632,3 +628,7 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+window.closeConfirmationModal = function () {
+  document.getElementById("confirmationModal").style.display = "none";
+};
