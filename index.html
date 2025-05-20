@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calabar Night Bites - Street Food Delivery</title>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </header>
   <body>
     <!-- Navigation -->
@@ -434,6 +438,30 @@
         </div>
       </div>
     </footer>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="confirmationModal" style="display: none">
+      <div class="modal-content" style="max-width: 400px">
+        <div class="modal-header">
+          <h3>Order Confirmed! 🎉</h3>
+        </div>
+        <div class="modal-body">
+          <i
+            class="fas fa-check-circle"
+            style="font-size: 48px; color: #4caf50; margin-bottom: 20px"
+          ></i>
+          <p>
+            We'll call you at <strong>${phone}</strong> to confirm your order.
+          </p>
+          <p>Thank you for choosing Calabar Night Bites!</p>
+        </div>
+        <div class="modal-footer">
+          <button onclick="closeConfirmationModal()" class="btn-confirm">
+            Got it!
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

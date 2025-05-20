@@ -590,9 +590,24 @@ deliveryForm.addEventListener("submit", function (e) {
 
   // In a real app, you would send this to your backend
   console.log("Order placed:", order);
+  showConfirmationModal(phone);
 
   // Show confirmation
-  alert(`Order received! We'll call you at ${phone} to confirm.`);
+  function showConfirmationModal(phone) {
+    const modal = document.getElementById("confirmationModal");
+    modal.style.display = "flex";
+    modal.querySelector(
+      ".modal-body p"
+    ).innerHTML = `We'll call you at <strong>${phone}</strong> to confirm your order.`;
+  }
+
+  /**
+   * Closes the confirmation modal by setting its display style to "none".
+   * This function assumes there is an element with the ID "confirmationModal" in the DOM.
+   */
+  function closeConfirmationModal() {
+    document.getElementById("confirmationModal").style.display = "none";
+  }
 
   // Clear cart
   cart = [];
