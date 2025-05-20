@@ -9,7 +9,7 @@ const vendors = {
         description: "Spicy assorted meat pepper soup",
         price: 1500,
         minAmount: 1500,
-        image: "https://source.unsplash.com/random/300x200/?pepper+soup",
+        image: "img/m1.jpg",
       },
       {
         id: 2,
@@ -17,7 +17,7 @@ const vendors = {
         description: "Grilled spicy beef skewers",
         price: 500,
         minAmount: 500,
-        image: "https://source.unsplash.com/random/300x200/?suya",
+        image: "img/m2.jpg",
       },
       {
         id: 3,
@@ -25,7 +25,7 @@ const vendors = {
         description: "Spicy tomato rice with chicken",
         price: 1200,
         minAmount: 1200,
-        image: "https://source.unsplash.com/random/300x200/?jollof+rice",
+        image: "img/m3.jpg",
       },
       {
         id: 4,
@@ -33,7 +33,7 @@ const vendors = {
         description: "Ripe plantain fried to perfection",
         price: 800,
         minAmount: 800,
-        image: "https://source.unsplash.com/random/300x200/?fried+plantain",
+        image: "img/m4.jpg",
       },
       {
         id: 5,
@@ -41,7 +41,7 @@ const vendors = {
         description: "Spicy assorted meat pepper soup",
         price: 1500,
         minAmount: 1500,
-        image: "https://source.unsplash.com/random/300x200/?pepper+soup",
+        image: "img/m1.jpg",
       },
       {
         id: 6,
@@ -49,7 +49,7 @@ const vendors = {
         description: "Grilled spicy beef skewers",
         price: 500,
         minAmount: 500,
-        image: "https://source.unsplash.com/random/300x200/?suya",
+        image: "img/m2.jpg",
       },
       {
         id: 7,
@@ -57,7 +57,7 @@ const vendors = {
         description: "Spicy tomato rice with chicken",
         price: 1200,
         minAmount: 1200,
-        image: "https://source.unsplash.com/random/300x200/?jollof+rice",
+        image: "img/m3.jpg",
       },
       {
         id: 8,
@@ -65,7 +65,7 @@ const vendors = {
         description: "Ripe plantain fried to perfection",
         price: 800,
         minAmount: 800,
-        image: "https://source.unsplash.com/random/300x200/?fried+plantain",
+        image: "img/m4.jpg",
       },
     ],
   },
