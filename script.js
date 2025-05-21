@@ -17,7 +17,7 @@ const vendors = {
         description: "Grilled spicy beef skewers",
         price: 500,
         minAmount: 500,
-        image: "img/m2.jpg",
+        image: "img/m2.JPG",
       },
       {
         id: 3,
@@ -25,7 +25,7 @@ const vendors = {
         description: "Spicy tomato rice with chicken",
         price: 1200,
         minAmount: 1200,
-        image: "img/m3.jpg",
+        image: "img/m3.JPG",
       },
       {
         id: 4,
@@ -33,7 +33,7 @@ const vendors = {
         description: "Ripe plantain fried to perfection",
         price: 800,
         minAmount: 800,
-        image: "img/m4.jpg",
+        image: "img/m4.JPG",
       },
       {
         id: 5,
@@ -41,7 +41,7 @@ const vendors = {
         description: "Spicy assorted meat pepper soup",
         price: 1500,
         minAmount: 1500,
-        image: "img/m1.jpg",
+        image: "img/m1.JPG",
       },
       {
         id: 6,
@@ -49,7 +49,7 @@ const vendors = {
         description: "Grilled spicy beef skewers",
         price: 500,
         minAmount: 500,
-        image: "img/m2.jpg",
+        image: "img/m2.JPG",
       },
       {
         id: 7,
@@ -57,7 +57,7 @@ const vendors = {
         description: "Spicy tomato rice with chicken",
         price: 1200,
         minAmount: 1200,
-        image: "img/m3.jpg",
+        image: "img/m3.JPG",
       },
       {
         id: 8,
@@ -65,7 +65,7 @@ const vendors = {
         description: "Ripe plantain fried to perfection",
         price: 800,
         minAmount: 800,
-        image: "img/m4.jpg",
+        image: "img/m4.JPG",
       },
     ],
   },
