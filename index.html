@@ -8,7 +8,12 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      href="lib/animate/animate.min.css"
+      rel="stylesheet"
     />
+    /> />
   </header>
   <body>
     <!-- Navigation -->
@@ -36,7 +41,10 @@
           class="carousel-item active"
           style="background-image: url('img/b1.jpg')"
         >
-          <div class="carousel-content">
+          <div
+            class="carousel-content wow animate__fadeInDown"
+            data-wow-duration="0.4s"
+          >
             <h2>Authentic Calabar Street Food</h2>
             <p>Delivered hot to your doorstep</p>
             <a href="menu.html" class="btn">Order Now</a>
@@ -73,9 +81,19 @@
     <!-- About Us Section -->
     <section class="about-section">
       <div class="container">
-        <div class="about-content">
+        <div
+          class="about-content wow animate__fadeIn"
+          data-wow-duration="1s"
+          data-wow-delay="0.5s"
+        >
           <div class="about-text">
-            <h2 class="section-title">About Calabar Night Bites</h2>
+            <h2
+              class="section-title wow fadeInUp"
+              data-wow-duration="1s"
+              data-wow-delay="0.3s"
+            >
+              About Calabar Night Bites
+            </h2>
             <p>
               Born from the vibrant nightlife of Calabar, we bring the authentic
               taste of the city's street food right to your doorstep. Our
@@ -103,7 +121,7 @@
               </div>
             </div>
           </div>
-          <div class="about-image">
+          <div class="about-image wow fadeInLeft" data-wow-delay="0.5s">
             <img src="img/logo.png" alt="Calabar Market" />
           </div>
         </div>
@@ -467,7 +485,6 @@
               <li><a href="menu.html">Menu</a></li>
               <li><a href="about.html">About Us</a></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="#">Privacy Policy</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -528,5 +545,11 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+    <script src="js/wow.min.js"></script>
+    <script>
+      new WOW().init();
+    </script>
   </body>
 </html>

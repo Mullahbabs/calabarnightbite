@@ -651,3 +651,8 @@ document.querySelectorAll(".legal-tab").forEach((tab) => {
 window.closeConfirmationModal = function () {
   document.getElementById("confirmationModal").style.display = "none";
 };
+
+console.log("WOW.js loaded:", typeof WOW !== "undefined");
+document.querySelectorAll(".wow").forEach((el) => {
+  console.log("Animation element:", el);
+});
