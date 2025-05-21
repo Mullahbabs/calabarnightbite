@@ -629,6 +629,25 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
+// Tab Functionality
+document.querySelectorAll(".legal-tab").forEach((tab) => {
+  tab.addEventListener("click", () => {
+    // Remove active class from all tabs and contents
+    document
+      .querySelectorAll(".legal-tab, .legal-tab-content")
+      .forEach((el) => {
+        el.classList.remove("active");
+      });
+
+    // Activate clicked tab
+    tab.classList.add("active");
+
+    // Show corresponding content
+    const tabId = tab.getAttribute("data-tab");
+    document.getElementById(tabId).classList.add("active");
+  });
+});
+
 window.closeConfirmationModal = function () {
   document.getElementById("confirmationModal").style.display = "none";
 };

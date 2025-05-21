@@ -22,6 +22,7 @@
           <a href="menu.html">Menu</a>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
+          <a href="#.html">Privacy Policy</a>
         </div>
         <button class="hamburger">
           <i class="fas fa-bars"></i>
@@ -181,7 +182,22 @@
           <p>Delivery Fee: ₦<span id="deliveryFee">500</span></p>
           <p class="total">Total: ₦<span id="grandTotal">800</span></p>
         </div>
-        <button class="checkout-btn" onclick="checkout()">Place Order</button>
+        <h2 style="text-align: center; color: #4caf50">Payment Info</h2>
+        <div class="cart-summary">
+          <p>Bank Name: <span>Moniepoint MFB</span></p>
+          <p>Account NO.: <span>8160549506</span></p>
+          <p>Account Name: <span>Calabarnightbites</span></p>
+        </div>
+        <h5 style="text-align: justify; color: #4caf50">
+          Please note that orders are only valid upon payment
+        </h5>
+        <br />
+        <h5 style="text-align: center; text-decoration: underline">
+          Thank you choosing Calabar Night Bights
+        </h5>
+        <button class="checkout-btn" onclick="checkout()">
+          Place Order To Proceed
+        </button>
       </div>
     </div>
 
@@ -207,6 +223,10 @@
             <label for="instructions">Special Instructions</label>
             <textarea id="instructions"></textarea>
           </div>
+          <p class="">
+            <label for="t&c">Accept Terms &amp; Conditions</label>
+            <input type="checkbox" id="t&c" required />
+          </p>
           <button type="submit">Confirm Order</button>
         </form>
       </div>
@@ -272,6 +292,64 @@
         </div>
         <div class="text-center">
           <a href="menu.html" class="btn btn-outline">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advertisements Section -->
+    <section class="ad-section">
+      <div class="container">
+        <h2 class="section-title">Special Offers & Adverts</h2>
+        <p class="section-subtitle">Advertise With Us</p>
+
+        <div class="ad-grid">
+          <!-- Ad 1: Fuel Discount -->
+          <div class="ad-card fuel-discount">
+            <div class="ad-badge">Adverts</div>
+            <div class="ad-content">
+              <img
+                src="https://source.unsplash.com/random/300x200/?gas,station,nigeria"
+                alt="Fuel Discount"
+                class="ad-image"
+              />
+              <h3>Product Name</h3>
+              <p>Description and advert text</p>
+              <button class="ad-button">Contact</button>
+            </div>
+          </div>
+
+          <!-- Ad 2: Weather Special -->
+          <div class="ad-card weather-special">
+            <div class="ad-badge">CNB Weather Alert</div>
+            <div class="ad-content">
+              <img
+                src="img/logo.png"
+                alt="Rainy Day Special"
+                class="ad-image"
+              />
+              <h3>Rainy Day Special</h3>
+              <p>
+                Free hot pepper soup with any order over ₦5000 during heavy
+                rains
+              </p>
+              <button class="ad-button">Order Now</button>
+            </div>
+          </div>
+
+          <!-- Ad 3: Safety Partnership -->
+          <div class="ad-card safety-partner">
+            <div class="ad-badge">Adverts</div>
+            <div class="ad-content">
+              <img
+                src="https://source.unsplash.com/random/300x200/?security,night"
+                alt="Safety Partnership"
+                class="ad-image"
+              />
+              <h3>Company Name</h3>
+              <p>Product Description and text</p>
+              <button class="ad-button">contact</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -352,6 +430,7 @@
       <div class="container">
         <h2>Ready to satisfy your late-night cravings?</h2>
         <p>Download our app for exclusive deals and faster ordering</p>
+        <h2 style="color: #4caf50">COMMING SOON!!!</h2>
         <div class="cta-buttons">
           <a href="#" class="btn btn-app">
             <i class="fab fa-apple"></i>
@@ -398,7 +477,7 @@
               <li>
                 <i class="fas fa-map-marker-alt"></i> 42 Marian Road, Calabar
               </li>
-              <li><i class="fas fa-phone"></i> +234 812 345 6789</li>
+              <li><i class="fas fa-phone"></i> +234 816 054 9506</li>
               <li>
                 <i class="fas fa-envelope"></i> info@calabarnightbites.com
               </li>
@@ -415,7 +494,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2023 Calabar Night Bites. All Rights Reserved.</p>
+          <p>&copy; 2025 Calabar Night Bites. All Rights Reserved.</p>
           <div class="payment-methods">
             <i class="fab fa-cc-visa"></i>
             <i class="fab fa-cc-mastercard"></i>

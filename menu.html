@@ -1,63 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <header>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calabar Night Bites - Street Food Delivery</title>
     <link rel="stylesheet" href="styles.css" />
-  </head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </header>
   <body>
-    <header>
-      <h1>Calabar Night Bites</h1>
-      <p>Your favorite street food delivered to your doorstep</p>
-    </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo"
+          ><img src="img/logo1.png" /> Calabar<span>NightBites</span></a
+        >
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="menu.html" class="active">Menu</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <button class="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+    <!--End Nav Bar-->
+    <section class="legal-banner">
+      <div class="banner-content">
+        <h1>Our Menu</h1>
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <span>Menu</span>
+        </div>
+      </div>
+    </section>
 
     <div class="cart-preview" id="cartPreview">
       <span id="cartCount">0</span> items - ₦<span id="cartTotal">0</span>
-      <button onclick="toggleCart()">View Cart</button>
+      <button
+        style="background-color: transparent; color: #ffd700; border: none"
+        onclick="toggleCart()"
+      >
+        View Cart
+      </button>
     </div>
 
     <div class="flash-message" id="flashMessage"></div>
 
     <div class="container">
       <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'marians')">
-          Marian's Spot
+        <button class="tab-button active" onclick="openTab(event, 'daddyk')">
+          Daddy K's
         </button>
-        <button class="tab-button" onclick="openTab(event, 'bobos')">
-          Bobo's Joint
+        <button class="tab-button" onclick="openTab(event, 'ifeco')">
+          Ifeco Kitchen
         </button>
-        <button class="tab-button" onclick="openTab(event, 'ekemini')">
-          Ekemini's Kitchen
+        <button class="tab-button" onclick="openTab(event, 'officepub')">
+          Office Pub Kitchen
         </button>
-        <button class="tab-button" onclick="openTab(event, 'calabarDelight')">
-          Calabar Delight
+        <button class="tab-button" onclick="openTab(event, 'karris')">
+          Karris Hotspot
         </button>
       </div>
 
-      <div id="marians" class="tab-content" style="display: block">
-        <h2>Marian's Spot</h2>
+      <div id="daddyk" class="tab-content" style="display: block">
+        <h2>Daddy K's</h2>
         <div class="menu-items">
           <!-- Items will be loaded here by JavaScript -->
         </div>
       </div>
 
-      <div id="bobos" class="tab-content">
-        <h2>Bobo's Joint</h2>
+      <div id="ifeco" class="tab-content">
+        <h2>Ifeco Kitchen</h2>
         <div class="menu-items">
           <!-- Items will be loaded here by JavaScript -->
         </div>
       </div>
 
-      <div id="ekemini" class="tab-content">
-        <h2>Ekemini's Kitchen</h2>
+      <div id="officepub" class="tab-content">
+        <h2>Office Pub Kitchen</h2>
         <div class="menu-items">
           <!-- Items will be loaded here by JavaScript -->
         </div>
       </div>
 
-      <div id="calabarDelight" class="tab-content">
-        <h2>Calabar Delight</h2>
+      <div id="karris" class="tab-content">
+        <h2>Karris Hotspot</h2>
         <div class="menu-items">
           <!-- Items will be loaded here by JavaScript -->
         </div>
@@ -68,7 +101,7 @@
     <div class="modal" id="cartModal">
       <div class="modal-content">
         <span class="close" onclick="toggleCart()">&times;</span>
-        <h2>Your Order</h2>
+        <h2 style="text-align: center; color: #8b0000">Items In Your Cart</h2>
         <div class="cart-items" id="cartItems">
           <!-- Cart items will be loaded here -->
         </div>
@@ -78,7 +111,22 @@
           <p>Delivery Fee: ₦<span id="deliveryFee">500</span></p>
           <p class="total">Total: ₦<span id="grandTotal">800</span></p>
         </div>
-        <button class="checkout-btn" onclick="checkout()">Place Order</button>
+        <h2 style="text-align: center; color: #4caf50">Payment Info</h2>
+        <div class="cart-summary">
+          <p>Bank Name: <span>Moniepoint MFB</span></p>
+          <p>Account NO.: <span>8160549506</span></p>
+          <p>Account Name: <span>Calabarnightbites</span></p>
+        </div>
+        <h5 style="text-align: justify; color: #4caf50">
+          Please note that orders are only valid upon payment
+        </h5>
+        <br />
+        <h5 style="text-align: center; text-decoration: underline">
+          Thank you choosing Calabar Night Bights
+        </h5>
+        <button class="checkout-btn" onclick="checkout()">
+          Place Order To Proceed
+        </button>
       </div>
     </div>
 
@@ -104,11 +152,117 @@
             <label for="instructions">Special Instructions</label>
             <textarea id="instructions"></textarea>
           </div>
+          <p class="">
+            <label for="t&c">Accept Terms &amp; Conditions</label>
+            <input type="checkbox" id="t&c" required />
+          </p>
           <button type="submit">Confirm Order</button>
         </form>
       </div>
     </div>
 
+    <!-- Call to Action -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to satisfy your late-night cravings?</h2>
+        <p>Download our app for exclusive deals and faster ordering</p>
+        <h2 style="color: #4caf50">COMMING SOON!!!</h2>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-app">
+            <i class="fab fa-apple"></i>
+            <span>Download on the<br /><strong>App Store</strong></span>
+          </a>
+          <a href="#" class="btn btn-app">
+            <i class="fab fa-google-play"></i>
+            <span>Get it on<br /><strong>Google Play</strong></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>Calabar Night Bites</h3>
+            <p>
+              Bringing Calabar's vibrant street food culture to your doorstep,
+              day or night.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="menu.html">Menu</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact Us</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 42 Marian Road, Calabar
+              </li>
+              <li><i class="fas fa-phone"></i> +234 816 054 9506</li>
+              <li>
+                <i class="fas fa-envelope"></i> info@calabarnightbites.com
+              </li>
+              <li><i class="fas fa-clock"></i> Open 24/7</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Newsletter</h3>
+            <p>Subscribe for weekly deals and updates</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Calabar Night Bites. All Rights Reserved.</p>
+          <div class="payment-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-paypal"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="confirmationModal" style="display: none">
+      <div class="modal-content" style="max-width: 400px">
+        <div class="modal-header">
+          <h3>Order Confirmed! 🎉</h3>
+        </div>
+        <div class="modal-body">
+          <i
+            class="fas fa-check-circle"
+            style="font-size: 48px; color: #4caf50; margin-bottom: 20px"
+          ></i>
+          <p>
+            We'll call you at <strong>${phone}</strong> to confirm your order.
+          </p>
+          <p>Thank you for choosing Calabar Night Bites!</p>
+        </div>
+        <div class="modal-footer">
+          <button onclick="closeConfirmationModal()" class="btn-confirm">
+            Got it!
+          </button>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
