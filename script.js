@@ -1,7 +1,7 @@
 // Vendor data
 const vendors = {
-  marians: {
-    name: "Marian's Spot",
+  daddyk: {
+    name: "Daddy K's",
     items: [
       {
         id: 1,
@@ -69,8 +69,8 @@ const vendors = {
       },
     ],
   },
-  bobos: {
-    name: "Bobo's Joint",
+  ifeco: {
+    name: "Ifeco's Kitchen",
     items: [
       {
         id: 9,
@@ -138,8 +138,8 @@ const vendors = {
       },
     ],
   },
-  ekemini: {
-    name: "Ekemini's Kitchen",
+  officepub: {
+    name: "Office Pub Kitchen",
     items: [
       {
         id: 17,
@@ -207,8 +207,8 @@ const vendors = {
       },
     ],
   },
-  calabarDelight: {
-    name: "Calabar Delight",
+  karris: {
+    name: "Karris Hotpot",
     items: [
       {
         id: 25,

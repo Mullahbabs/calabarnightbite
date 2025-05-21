@@ -112,49 +112,54 @@
 
     <div class="cart-preview" id="cartPreview">
       <span id="cartCount">0</span> items - ₦<span id="cartTotal">0</span>
-      <button onclick="toggleCart()">View Cart</button>
+      <button
+        style="background-color: transparent; color: #ffd700; border: none"
+        onclick="toggleCart()"
+      >
+        View Cart
+      </button>
     </div>
 
     <div class="flash-message" id="flashMessage"></div>
 
     <div class="container">
       <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'marians')">
+        <button class="tab-button active" onclick="openTab(event, 'daddyk')">
           Daddy K's
         </button>
-        <button class="tab-button" onclick="openTab(event, 'bobos')">
+        <button class="tab-button" onclick="openTab(event, 'ifeco')">
           Ifeco Kitchen
         </button>
-        <button class="tab-button" onclick="openTab(event, 'ekemini')">
+        <button class="tab-button" onclick="openTab(event, 'officepub')">
           Office Pub Kitchen
         </button>
-        <button class="tab-button" onclick="openTab(event, 'calabarDelight')">
+        <button class="tab-button" onclick="openTab(event, 'karris')">
           Karris Hotspot
         </button>
       </div>
 
-      <div id="marians" class="tab-content" style="display: block">
+      <div id="daddyk" class="tab-content" style="display: block">
         <h2>Daddy K's</h2>
         <div class="menu-items">
           <!-- Items will be loaded here by JavaScript -->
         </div>
       </div>
 
-      <div id="bobos" class="tab-content">
+      <div id="ifeco" class="tab-content">
         <h2>Ifeco Kitchen</h2>
         <div class="menu-items">
           <!-- Items will be loaded here by JavaScript -->
         </div>
       </div>
 
-      <div id="ekemini" class="tab-content">
+      <div id="officepub" class="tab-content">
         <h2>Office Pub Kitchen</h2>
         <div class="menu-items">
           <!-- Items will be loaded here by JavaScript -->
         </div>
       </div>
 
-      <div id="calabarDelight" class="tab-content">
+      <div id="karris" class="tab-content">
         <h2>Karris Hotspot</h2>
         <div class="menu-items">
           <!-- Items will be loaded here by JavaScript -->
@@ -166,7 +171,7 @@
     <div class="modal" id="cartModal">
       <div class="modal-content">
         <span class="close" onclick="toggleCart()">&times;</span>
-        <h2>Your Order</h2>
+        <h2 style="text-align: center; color: #8b0000">Items In Your Cart</h2>
         <div class="cart-items" id="cartItems">
           <!-- Cart items will be loaded here -->
         </div>
@@ -292,10 +297,7 @@
               </p>
             </div>
             <div class="testimonial-author">
-              <img
-                src="https://randomuser.me/api/portraits/women/32.jpg"
-                alt="Chioma"
-              />
+              <img src="img/testimonial.png" alt="Chioma" />
               <h4>Chioma E.</h4>
               <span>Regular Customer</span>
             </div>
@@ -315,10 +317,7 @@
               </p>
             </div>
             <div class="testimonial-author">
-              <img
-                src="https://randomuser.me/api/portraits/men/45.jpg"
-                alt="Emeka"
-              />
+              <img src="img/testimonial.png" alt="Emeka" />
               <h4>Emeka O.</h4>
               <span>Tourist</span>
             </div>
@@ -339,10 +338,7 @@
               </p>
             </div>
             <div class="testimonial-author">
-              <img
-                src="https://randomuser.me/api/portraits/women/68.jpg"
-                alt="Amina"
-              />
+              <img src="img/testimonial.png" alt="Amina" />
               <h4>Amina B.</h4>
               <span>Night Nurse</span>
             </div>
