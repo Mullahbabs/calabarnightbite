@@ -1493,7 +1493,7 @@ body {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (max-width: 728px) {
   .ad-grid {
     grid-template-columns: 1fr;
   }
