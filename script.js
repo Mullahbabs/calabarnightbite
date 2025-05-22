@@ -5,43 +5,43 @@ const vendors = {
     items: [
       {
         id: 1,
-        name: "Pepper Soup",
-        description: "Spicy assorted meat pepper soup",
-        price: 1500,
-        minAmount: 1500,
-        image: "img/about.jpg",
+        name: "Noodles & Egg ",
+        description: "Hot Nodles & Egg (Boiled or Fried)",
+        price: 950,
+        minAmount: 950,
+        image: "img/noodles.jpg",
       },
       {
         id: 2,
         name: "Suya",
         description: "Grilled spicy beef skewers",
-        price: 500,
-        minAmount: 500,
+        price: 700,
+        minAmount: 700,
         image: "img/m2.JPG",
       },
       {
         id: 3,
-        name: "Jollof Rice",
+        name: "Jollof Rice & Chicken",
         description: "Spicy tomato rice with chicken",
-        price: 1200,
-        minAmount: 1200,
-        image: "img/m3.JPG",
+        price: 3100,
+        minAmount: 3100,
+        image: "img/m8.JPG",
       },
       {
         id: 4,
-        name: "Fried Plantain",
-        description: "Ripe plantain fried to perfection",
+        name: "Fried Plantain & Eggs",
+        description: "Ripe plantain & eggs,fried to perfection",
         price: 800,
         minAmount: 800,
-        image: "img/m4.JPG",
+        image: "img/dodo.JPG",
       },
       {
         id: 5,
-        name: "Pepper Soup",
-        description: "Spicy assorted meat pepper soup",
-        price: 1500,
-        minAmount: 1500,
-        image: "img/m1.JPG",
+        name: "Tourkey Noodles",
+        description: "Spicy tourkey on noodles",
+        price: 5100,
+        minAmount: 5100,
+        image: "img/about.jpg",
       },
       {
         id: 6,
@@ -565,7 +565,59 @@ function closeCheckout() {
   checkoutModal.style.display = "none";
 }
 
-// Submit delivery form
+// NEW: Google Apps Script URL
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbzQC5oQKzVM_UaQc8JmJ3wnAg65ODOeUtxJKcX2MijtlBHZ5b1Mx3QxiW3M77ITLDNugw/exec";
+const RESTAURANT_EMAIL = "bennybeshel@gmail.com";
+// NEW: Enhanced order submission
+async function submitOrder(orderData) {
+  try {
+    // Show loading state
+    const submitBtn = document.querySelector(
+      '#deliveryForm button[type="submit"]'
+    );
+    submitBtn.disabled = true;
+    submitBtn.innerHTML =
+      '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+    // Format items for better email display
+    const formattedItems = orderData.items.map((item) => ({
+      name: `${item.name} (${item.vendorName})`,
+      quantity: item.quantity,
+      price: `₦${item.amount.toLocaleString()}`,
+      total: `₦${(item.amount * item.quantity).toLocaleString()}`,
+    }));
+
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...orderData,
+        items: formattedItems,
+        restaurantEmail: RESTAURANT_EMAIL,
+        _subject: `New Order - ₦${orderData.total.toLocaleString()}`,
+        _template: "table",
+      }),
+    });
+
+    if (!response.ok) throw new Error("Network response was not ok");
+
+    return true;
+  } catch (error) {
+    console.error("Submission error:", error);
+    return false;
+  } finally {
+    // Reset button state
+    const submitBtn = document.querySelector(
+      '#deliveryForm button[type="submit"]'
+    );
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Place Order";
+    }
+  }
+}
+
 deliveryForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -574,10 +626,10 @@ deliveryForm.addEventListener("submit", async function (e) {
   const address = document.getElementById("address").value;
   const instructions = document.getElementById("instructions").value;
 
-  // Prepare order data
+  // Prepare order data (enhanced)
   const order = {
     customer: { name, phone, address, instructions },
-    items: cart,
+    items: [...cart], // Create copy to avoid reference issues
     subtotal: cart.reduce((sum, item) => sum + item.amount * item.quantity, 0),
     serviceFee,
     deliveryFee,
@@ -585,34 +637,40 @@ deliveryForm.addEventListener("submit", async function (e) {
       cart.reduce((sum, item) => sum + item.amount * item.quantity, 0) +
       serviceFee +
       deliveryFee,
-    date: new Date().toISOString(),
+    date: new Date().toLocaleString("en-NG", {
+      restaurantEmail: RESTAURANT_EMAIL,
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
   };
 
-  // In a real app, you would send this to your backend
-  console.log("Order placed:", order);
-  showConfirmationModal(phone);
+  // Submit order
+  const success = await submitOrder(order);
 
-  // Show confirmation
-  function showConfirmationModal(phone) {
-    const modal = document.getElementById("confirmationModal");
-    modal.style.display = "flex";
-    modal.querySelector(
-      ".modal-body p"
-    ).innerHTML = `We'll call you at <strong>${phone}</strong> to confirm your order.`;
+  if (success) {
+    showConfirmationModal(phone);
+
+    // Clear cart
+    cart = [];
+    localStorage.removeItem("nightBitesCart");
+    updateCartPreview();
+    closeCheckout();
+    deliveryForm.reset();
+  } else {
+    // Fallback option
+    const fallbackMessage = `Order failed. Please call us directly at 080-XXX-XXXX with this order ID: CNB-${Date.now()
+      .toString()
+      .slice(-4)}`;
+    alert(fallbackMessage);
+
+    // Keep cart intact for retry
+    renderCart();
   }
-
-  function closeConfirmationModal() {
-    document.getElementById("confirmationModal").style.display = "none";
-  }
-
-  // Clear cart
-  cart = [];
-  localStorage.removeItem("nightBitesCart");
-  updateCartPreview();
-  closeCheckout();
-  deliveryForm.reset();
 });
-
 // Tab functionality
 function openTab(evt, tabName) {
   const tabContents = document.getElementsByClassName("tab-content");
