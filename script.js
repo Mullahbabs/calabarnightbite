@@ -1,4 +1,3 @@
-// Vendor data
 const vendors = {
   daddyk: {
     name: "Daddy K's",
@@ -278,10 +277,13 @@ const vendors = {
   },
 };
 
-// Cart state
+// Cart state and constants
 let cart = [];
 const serviceFee = 300;
 const deliveryFee = 500;
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbx249WiHAkfI19MrUrVWIdR9VuI7ok59cT-B5IRtF2ju9Kcf08ZIrHKt8DcQ9thpyZ1PA/exec";
+const RESTAURANT_EMAIL = "bennybeshel@gmail.com";
 
 // DOM elements
 const cartPreview = document.getElementById("cartPreview");
@@ -302,20 +304,31 @@ const indicators = document.querySelectorAll(".indicator");
 let currentSlide = 0;
 let slideInterval;
 
-// Initialize the app
+// Initialize the application
 document.addEventListener("DOMContentLoaded", function () {
+  // Load menu items for all vendors
   loadMenuItems();
+  // Update cart preview UI
   updateCartPreview();
-
-  // Load cart from localStorage if available
-  const savedCart = localStorage.getItem("nightBitesCart");
-  if (savedCart) {
-    cart = JSON.parse(savedCart);
-    updateCartPreview();
+  // Load saved cart from localStorage
+  try {
+    const savedCart = localStorage.getItem("nightBitesCart");
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+      updateCartPreview();
+    }
+  } catch (error) {
+    console.error("Error loading cart from localStorage:", error);
+    showFlashMessage("Failed to load cart. Please try again.");
   }
+  // Start carousel animation
+  startCarousel();
+  // Attach scroll event listener for navbar effect
+  window.addEventListener("scroll", handleScroll);
 });
 
-// Load menu items for all vendors
+// Menu Functions
+// Load and render menu items for all vendors
 function loadMenuItems() {
   for (const vendorId in vendors) {
     const vendor = vendors[vendorId];
@@ -325,37 +338,36 @@ function loadMenuItems() {
       const menuItem = document.createElement("div");
       menuItem.className = "menu-item";
       menuItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                <div class="menu-item-content">
-                    <h3>${item.name}</h3>
-                    <p>${item.description}</p>
-                    <span class="price">From ₦${item.minAmount.toLocaleString()}</span>
-                    <button class="add-to-cart" data-id="${
-                      item.id
-                    }" data-vendor="${vendorId}">Add to Cart</button>
-                </div>
-            `;
+        <img src="${item.image}" alt="${item.name}">
+        <div class="menu-item-content">
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            <span class="price">From ₦${item.minAmount.toLocaleString()}</span>
+            <button class="add-to-cart" data-id="${
+              item.id
+            }" data-vendor="${vendorId}">Add to Cart</button>
+        </div>
+      `;
       menuContainer.appendChild(menuItem);
     });
   }
 
-  // Add event listeners to all add-to-cart buttons
+  // Attach event listeners to add-to-cart buttons
   document.querySelectorAll(".add-to-cart").forEach((button) => {
     button.addEventListener("click", addToCart);
   });
 }
 
-// Add item to cart
+// Cart Functions
+// Add an item to the cart
 function addToCart(e) {
   const button = e.target;
   const itemId = parseInt(button.getAttribute("data-id"));
   const vendorId = button.getAttribute("data-vendor");
 
-  // Find the vendor and item
   const vendor = vendors[vendorId];
   const item = vendor.items.find((i) => i.id === itemId);
 
-  // Check if item already exists in cart
   const existingItem = cart.find(
     (i) => i.id === item.id && i.vendor === vendorId
   );
@@ -376,87 +388,19 @@ function addToCart(e) {
     });
   }
 
-  // Save to localStorage
-  localStorage.setItem("nightBitesCart", JSON.stringify(cart));
+  // Save cart to localStorage with error handling
+  try {
+    localStorage.setItem("nightBitesCart", JSON.stringify(cart));
+  } catch (error) {
+    console.error("Error saving cart to localStorage:", error);
+    showFlashMessage("Failed to save cart. Please try again.");
+  }
 
-  // Update UI
   updateCartPreview();
   showFlashMessage(`${item.name} added to cart`);
 }
 
-// Show flash message
-function showFlashMessage(message) {
-  flashMessage.textContent = message;
-  flashMessage.style.display = "block";
-
-  setTimeout(() => {
-    flashMessage.style.animation = "fadeOut 0.3s";
-    setTimeout(() => {
-      flashMessage.style.display = "none";
-      flashMessage.style.animation = "fadeIn 0.3s";
-    }, 300);
-  }, 2000);
-}
-
-// Carousel functions
-function startCarousel() {
-  slideInterval = setInterval(nextSlide, 5000);
-}
-
-function nextSlide() {
-  goToSlide((currentSlide + 1) % carouselItems.length);
-}
-
-function prevSlide() {
-  goToSlide((currentSlide - 1 + carouselItems.length) % carouselItems.length);
-}
-
-function goToSlide(n) {
-  carouselItems[currentSlide].classList.remove("active");
-  indicators[currentSlide].classList.remove("active");
-
-  currentSlide = n;
-
-  carouselItems[currentSlide].classList.add("active");
-  indicators[currentSlide].classList.add("active");
-  carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-  // Reset timer when manually changing slides
-  clearInterval(slideInterval);
-  startCarousel();
-}
-
-function moveSlide(n) {
-  if (n > 0) {
-    nextSlide();
-  } else {
-    prevSlide();
-  }
-}
-
-// Navbar scroll effect
-function handleScroll() {
-  if (window.scrollY > 50) {
-    document.querySelector(".navbar").classList.add("scrolled");
-  } else {
-    document.querySelector(".navbar").classList.remove("scrolled");
-  }
-}
-
-// Mobile menu functions
-function toggleMobileMenu() {
-  navLinks.classList.toggle("active");
-  hamburger.innerHTML = navLinks.classList.contains("active")
-    ? '<i class="fas fa-times"></i>'
-    : '<i class="fas fa-bars"></i>';
-}
-
-function closeMobileMenu() {
-  navLinks.classList.remove("active");
-  hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-}
-
-// Update cart preview
+// Update cart preview UI
 function updateCartPreview() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const totalAmount = cart.reduce(
@@ -468,17 +412,7 @@ function updateCartPreview() {
   cartTotal.textContent = totalAmount.toLocaleString();
 }
 
-// Toggle cart modal
-function toggleCart() {
-  if (cartModal.style.display === "block") {
-    cartModal.style.display = "none";
-  } else {
-    renderCart();
-    cartModal.style.display = "block";
-  }
-}
-
-// Render cart items
+// Render cart items in the modal
 function renderCart() {
   if (cart.length === 0) {
     cartItems.innerHTML = "<p>Your cart is empty</p>";
@@ -492,25 +426,24 @@ function renderCart() {
 
   cart.forEach((item, index) => {
     total += item.amount * item.quantity;
-
     itemsHTML += `
-            <div class="cart-item">
-                <div class="cart-item-info">
-                    <h4>${item.name}</h4>
-                    <p>${item.vendorName}</p>
-                    <p>₦${item.amount.toLocaleString()} per plate (min: ₦${item.minAmount.toLocaleString()})</p>
-                </div>
-                <div class="cart-item-controls">
-                    <input type="number" min="1" value="${item.quantity}" 
-                        onchange="updateCartItem(${index}, this.value, 'quantity')">
-                    <input type="number" min="${item.minAmount}" value="${
+      <div class="cart-item">
+          <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>${item.vendorName}</p>
+              <p>₦${item.amount.toLocaleString()} per plate (min: ₦${item.minAmount.toLocaleString()})</p>
+          </div>
+          <div class="cart-item-controls">
+              <input type="number" min="1" value="${item.quantity}" 
+                  onchange="updateCartItem(${index}, this.value, 'quantity')">
+              <input type="number" min="${item.minAmount}" value="${
       item.amount
     }" 
-                        onchange="updateCartItem(${index}, this.value, 'amount')">
-                    <span class="remove-item" onclick="removeFromCart(${index})">Remove</span>
-                </div>
-            </div>
-        `;
+                  onchange="updateCartItem(${index}, this.value, 'amount')">
+              <span class="remove-item" onclick="removeFromCart(${index})">Remove</span>
+          </div>
+      </div>
+    `;
   });
 
   cartItems.innerHTML = itemsHTML;
@@ -529,24 +462,57 @@ function updateCartItem(index, value, type) {
     item.amount = Math.max(amount, item.minAmount);
   }
 
-  // Save to localStorage
-  localStorage.setItem("nightBitesCart", JSON.stringify(cart));
+  // Save cart to localStorage with error handling
+  try {
+    localStorage.setItem("nightBitesCart", JSON.stringify(cart));
+  } catch (error) {
+    console.error("Error updating cart in localStorage:", error);
+    showFlashMessage("Failed to update cart. Please try again.");
+  }
 
-  // Update UI
   renderCart();
   updateCartPreview();
 }
 
-// Remove item from cart
+// Remove an item from the cart
 function removeFromCart(index) {
   cart.splice(index, 1);
 
-  // Save to localStorage
-  localStorage.setItem("nightBitesCart", JSON.stringify(cart));
+  // Save cart to localStorage with error handling
+  try {
+    localStorage.setItem("nightBitesCart", JSON.stringify(cart));
+  } catch (error) {
+    console.error("Error removing item from localStorage:", error);
+    showFlashMessage("Failed to remove item from cart. Please try again.");
+  }
 
-  // Update UI
   renderCart();
   updateCartPreview();
+}
+
+// UI Functions
+// Show flash message for user feedback
+function showFlashMessage(message) {
+  flashMessage.textContent = message;
+  flashMessage.style.display = "block";
+
+  setTimeout(() => {
+    flashMessage.style.animation = "fadeOut 0.3s";
+    setTimeout(() => {
+      flashMessage.style.display = "none";
+      flashMessage.style.animation = "fadeIn 0.3s";
+    }, 300);
+  }, 2000);
+}
+
+// Toggle cart modal visibility
+function toggleCart() {
+  if (cartModal.style.display === "block") {
+    cartModal.style.display = "none";
+  } else {
+    renderCart();
+    cartModal.style.display = "block";
+  }
 }
 
 // Proceed to checkout
@@ -565,14 +531,60 @@ function closeCheckout() {
   checkoutModal.style.display = "none";
 }
 
-// NEW: Google Apps Script URL
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzQC5oQKzVM_UaQc8JmJ3wnAg65ODOeUtxJKcX2MijtlBHZ5b1Mx3QxiW3M77ITLDNugw/exec";
-const RESTAURANT_EMAIL = "bennybeshel@gmail.com";
-// NEW: Enhanced order submission
+// Carousel Functions
+// Start the carousel with automatic sliding
+function startCarousel() {
+  slideInterval = setInterval(nextSlide, 5000);
+}
+
+// Move to the next slide
+function nextSlide() {
+  goToSlide((currentSlide + 1) % carouselItems.length);
+}
+
+// Move to the previous slide
+function prevSlide() {
+  goToSlide((currentSlide - 1 + carouselItems.length) % carouselItems.length);
+}
+
+// Go to a specific slide
+function goToSlide(n) {
+  carouselItems[currentSlide].classList.remove("active");
+  indicators[currentSlide].classList.remove("active");
+
+  currentSlide = n;
+
+  carouselItems[currentSlide].classList.add("active");
+  indicators[currentSlide].classList.add("active");
+  carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  // Reset timer when manually changing slides
+  clearInterval(slideInterval);
+  startCarousel();
+}
+
+// Move slide based on direction
+function moveSlide(n) {
+  if (n > 0) {
+    nextSlide();
+  } else {
+    prevSlide();
+  }
+}
+
+// Navbar scroll effect
+function handleScroll() {
+  if (window.scrollY > 50) {
+    document.querySelector(".navbar").classList.add("scrolled");
+  } else {
+    document.querySelector(".navbar").classList.remove("scrolled");
+  }
+}
+
+// Order Submission Functions
+// Submit order to Google Apps Script
 async function submitOrder(orderData) {
   try {
-    // Show loading state
     const submitBtn = document.querySelector(
       '#deliveryForm button[type="submit"]'
     );
@@ -580,34 +592,38 @@ async function submitOrder(orderData) {
     submitBtn.innerHTML =
       '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-    // Format items for better email display
-    const formattedItems = orderData.items.map((item) => ({
-      name: `${item.name} (${item.vendorName})`,
-      quantity: item.quantity,
-      price: `₦${item.amount.toLocaleString()}`,
-      total: `₦${(item.amount * item.quantity).toLocaleString()}`,
-    }));
-
     const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
+      cache: "no-cache",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        ...orderData,
-        items: formattedItems,
+        customer: orderData.customer,
+        items: orderData.items.map((item) => ({
+          name: `${item.name} (${item.vendorName})`,
+          quantity: item.quantity,
+          price: item.amount,
+          total: item.amount * item.quantity,
+        })),
+        subtotal: orderData.subtotal,
+        serviceFee: orderData.serviceFee,
+        deliveryFee: orderData.deliveryFee,
+        total: orderData.total,
+        date: orderData.date,
         restaurantEmail: RESTAURANT_EMAIL,
-        _subject: `New Order - ₦${orderData.total.toLocaleString()}`,
-        _template: "table",
       }),
     });
 
-    if (!response.ok) throw new Error("Network response was not ok");
+    console.log("Response status:", response.status);
+    const responseBody = await response.text();
+    console.log("Response body:", responseBody);
 
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     return true;
   } catch (error) {
-    console.error("Submission error:", error);
+    console.error("Error submitting order:", error);
+    showFlashMessage("Failed to submit order. Please try again.");
     return false;
   } finally {
-    // Reset button state
     const submitBtn = document.querySelector(
       '#deliveryForm button[type="submit"]'
     );
@@ -618,27 +634,45 @@ async function submitOrder(orderData) {
   }
 }
 
+// Handle form submission with validation
 deliveryForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const address = document.getElementById("address").value;
-  const instructions = document.getElementById("instructions").value;
+  // Validate form inputs
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const address = document.getElementById("address").value.trim();
 
-  // Prepare order data (enhanced)
+  if (!name || !phone || !address) {
+    showFlashMessage(
+      "Please fill in all required fields (Name, Phone, Address)."
+    );
+    return;
+  }
+
+  // Basic phone number validation (simple regex for Nigerian numbers)
+  const phoneRegex = /^(\+234|0)[789]\d{9}$/;
+  if (!phoneRegex.test(phone)) {
+    showFlashMessage("Please enter a valid Nigerian phone number.");
+    return;
+  }
+
   const order = {
-    customer: { name, phone, address, instructions },
-    items: [...cart], // Create copy to avoid reference issues
+    customer: {
+      name,
+      phone,
+      address,
+      instructions: document.getElementById("instructions").value.trim(),
+    },
+    items: [...cart],
     subtotal: cart.reduce((sum, item) => sum + item.amount * item.quantity, 0),
-    serviceFee,
-    deliveryFee,
+    serviceFee: serviceFee,
+    deliveryFee: deliveryFee,
     total:
       cart.reduce((sum, item) => sum + item.amount * item.quantity, 0) +
       serviceFee +
       deliveryFee,
     date: new Date().toLocaleString("en-NG", {
-      restaurantEmail: RESTAURANT_EMAIL,
       weekday: "long",
       year: "numeric",
       month: "long",
@@ -648,30 +682,31 @@ deliveryForm.addEventListener("submit", async function (e) {
     }),
   };
 
-  // Submit order
   const success = await submitOrder(order);
 
   if (success) {
-    showConfirmationModal(phone);
-
-    // Clear cart
+    showConfirmationModal(order.customer.phone);
     cart = [];
-    localStorage.removeItem("nightBitesCart");
+    try {
+      localStorage.removeItem("nightBitesCart");
+    } catch (error) {
+      console.error("Error clearing cart from localStorage:", error);
+      showFlashMessage("Failed to clear cart. Please try again.");
+    }
     updateCartPreview();
     closeCheckout();
     deliveryForm.reset();
   } else {
-    // Fallback option
-    const fallbackMessage = `Order failed. Please call us directly at 080-XXX-XXXX with this order ID: CNB-${Date.now()
-      .toString()
-      .slice(-4)}`;
-    alert(fallbackMessage);
-
-    // Keep cart intact for retry
-    renderCart();
+    alert(
+      `Order failed. Please call 080-XXX-XXXX with ID: CNB-${Date.now()
+        .toString()
+        .slice(-4)}`
+    );
   }
 });
-// Tab functionality
+
+// Tab Functions
+// Open a specific tab
 function openTab(evt, tabName) {
   const tabContents = document.getElementsByClassName("tab-content");
   for (let i = 0; i < tabContents.length; i++) {
@@ -687,25 +722,21 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-// Tab Functionality
+// Handle legal tab clicks
 document.querySelectorAll(".legal-tab").forEach((tab) => {
   tab.addEventListener("click", () => {
-    // Remove active class from all tabs and contents
     document
       .querySelectorAll(".legal-tab, .legal-tab-content")
       .forEach((el) => {
         el.classList.remove("active");
       });
-
-    // Activate clicked tab
     tab.classList.add("active");
-
-    // Show corresponding content
     const tabId = tab.getAttribute("data-tab");
     document.getElementById(tabId).classList.add("active");
   });
 });
 
+// Close confirmation modal
 window.closeConfirmationModal = function () {
   document.getElementById("confirmationModal").style.display = "none";
 };
