@@ -581,7 +581,6 @@ function handleScroll() {
   }
 }
 
-// Order Submission Functions
 // Submit order to Google Apps Script
 async function submitOrder(orderData) {
   try {
@@ -614,14 +613,16 @@ async function submitOrder(orderData) {
     });
 
     console.log("Response status:", response.status);
-    const responseBody = await response.text();
+    const responseBody = await response.json(); // Changed to .json() for proper parsing
     console.log("Response body:", responseBody);
 
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return true;
+    return responseBody.success === true;
   } catch (error) {
     console.error("Error submitting order:", error);
-    showFlashMessage("Failed to submit order. Please try again.");
+    showFlashMessage(
+      "Failed to submit order. Please check your connection or contact support."
+    );
     return false;
   } finally {
     const submitBtn = document.querySelector(
@@ -698,7 +699,7 @@ deliveryForm.addEventListener("submit", async function (e) {
     deliveryForm.reset();
   } else {
     alert(
-      `Order failed. Please call 080-XXX-XXXX with ID: CNB-${Date.now()
+      `Deployment is ongoing. Please call 080-XXX-XXXX with ID: CNB-${Date.now()
         .toString()
         .slice(-4)}`
     );
