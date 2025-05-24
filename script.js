@@ -1,50 +1,18 @@
-// Vendor data (unchanged)
+// Vendor data
 const vendors = {
-  daddyk: {
-    name: "Daddy K's",
+  featured: {
+    name: "Featured Items",
     items: [
       {
         id: 1,
-        name: "Noodles & Egg ",
-        description: "Hot Nodles & Egg (Boiled or Fried)",
-        price: 950,
-        minAmount: 950,
-        image: "img/noodles.jpg",
+        name: "Pepper Soup",
+        description: "Spicy assorted meat pepper soup",
+        price: 1500,
+        minAmount: 1500,
+        image: "img/m1.JPG",
       },
       {
         id: 2,
-        name: "Suya",
-        description: "Grilled spicy beef skewers",
-        price: 700,
-        minAmount: 700,
-        image: "img/m2.JPG",
-      },
-      {
-        id: 3,
-        name: "Jollof Rice & Chicken",
-        description: "Spicy tomato rice with chicken",
-        price: 3100,
-        minAmount: 3100,
-        image: "img/m8.JPG",
-      },
-      {
-        id: 4,
-        name: "Fried Plantain & Eggs",
-        description: "Ripe plantain & eggs,fried to perfection",
-        price: 800,
-        minAmount: 800,
-        image: "img/dodo.JPG",
-      },
-      {
-        id: 5,
-        name: "Tourkey Noodles",
-        description: "Spicy tourkey on noodles",
-        price: 5100,
-        minAmount: 5100,
-        image: "img/about.jpg",
-      },
-      {
-        id: 6,
         name: "Suya",
         description: "Grilled spicy beef skewers",
         price: 500,
@@ -52,7 +20,76 @@ const vendors = {
         image: "img/m2.JPG",
       },
       {
+        id: 3,
+        name: "Grilled Fish",
+        description: "Fresh fish grilled with spices",
+        price: 2500,
+        minAmount: 2500,
+        image: "img/m3.JPG",
+      },
+      {
+        id: 4,
+        name: "Edikang Ikong",
+        description: "Pumpkin leaves and waterleaf soup",
+        price: 2200,
+        minAmount: 2200,
+        image: "img/m4.JPG",
+      },
+    ],
+  },
+  daddyk: {
+    name: "Daddy K's",
+    items: [
+      {
+        id: 5,
+        name: "Noodles & Egg ",
+        description: "Hot Nodles & Egg (Boiled or Fried)",
+        price: 950,
+        minAmount: 950,
+        image: "img/noodles.jpg",
+      },
+      {
+        id: 6,
+        name: "Suya",
+        description: "Grilled spicy beef skewers",
+        price: 700,
+        minAmount: 700,
+        image: "img/m2.JPG",
+      },
+      {
         id: 7,
+        name: "Jollof Rice & Chicken",
+        description: "Spicy tomato rice with chicken",
+        price: 3100,
+        minAmount: 3100,
+        image: "img/m8.JPG",
+      },
+      {
+        id: 8,
+        name: "Fried Plantain & Eggs",
+        description: "Ripe plantain & eggs,fried to perfection",
+        price: 800,
+        minAmount: 800,
+        image: "img/dodo.JPG",
+      },
+      {
+        id: 9,
+        name: "Tourkey Noodles",
+        description: "Spicy tourkey on noodles",
+        price: 5100,
+        minAmount: 5100,
+        image: "img/about.jpg",
+      },
+      {
+        id: 10,
+        name: "Suya",
+        description: "Grilled spicy beef skewers",
+        price: 500,
+        minAmount: 500,
+        image: "img/m2.JPG",
+      },
+      {
+        id: 11,
         name: "Jollof Rice",
         description: "Spicy tomato rice with chicken",
         price: 1200,
@@ -60,7 +97,7 @@ const vendors = {
         image: "img/m3.JPG",
       },
       {
-        id: 8,
+        id: 12,
         name: "Fried Plantain",
         description: "Ripe plantain fried to perfection",
         price: 800,
@@ -72,38 +109,6 @@ const vendors = {
   ifeco: {
     name: "Ifeco's Kitchen",
     items: [
-      {
-        id: 9,
-        name: "Grilled Fish",
-        description: "Fresh fish grilled with spices",
-        price: 2500,
-        minAmount: 2500,
-        image: "https://source.unsplash.com/random/300x200/?grilled+fish",
-      },
-      {
-        id: 10,
-        name: "Pounded Yam & Egusi",
-        description: "Local delicacy with melon soup",
-        price: 1800,
-        minAmount: 1800,
-        image: "https://source.unsplash.com/random/300x200/?pounded+yam",
-      },
-      {
-        id: 11,
-        name: "Afang Soup",
-        description: "Traditional Calabar vegetable soup",
-        price: 2000,
-        minAmount: 2000,
-        image: "https://source.unsplash.com/random/300x200/?afang+soup",
-      },
-      {
-        id: 12,
-        name: "Roasted Yam",
-        description: "Yam roasted with palm oil sauce",
-        price: 1000,
-        minAmount: 1000,
-        image: "https://source.unsplash.com/random/300x200/?roasted+yam",
-      },
       {
         id: 13,
         name: "Grilled Fish",
@@ -136,43 +141,43 @@ const vendors = {
         minAmount: 1000,
         image: "https://source.unsplash.com/random/300x200/?roasted+yam",
       },
+      {
+        id: 17,
+        name: "Grilled Fish",
+        description: "Fresh fish grilled with spices",
+        price: 2500,
+        minAmount: 2500,
+        image: "https://source.unsplash.com/random/300x200/?grilled+fish",
+      },
+      {
+        id: 18,
+        name: "Pounded Yam & Egusi",
+        description: "Local delicacy with melon soup",
+        price: 1800,
+        minAmount: 1800,
+        image: "https://source.unsplash.com/random/300x200/?pounded+yam",
+      },
+      {
+        id: 19,
+        name: "Afang Soup",
+        description: "Traditional Calabar vegetable soup",
+        price: 2000,
+        minAmount: 2000,
+        image: "https://source.unsplash.com/random/300x200/?afang+soup",
+      },
+      {
+        id: 20,
+        name: "Roasted Yam",
+        description: "Yam roasted with palm oil sauce",
+        price: 1000,
+        minAmount: 1000,
+        image: "https://source.unsplash.com/random/300x200/?roasted+yam",
+      },
     ],
   },
   officepub: {
     name: "Office Pub Kitchen",
     items: [
-      {
-        id: 17,
-        name: "Edikang Ikong",
-        description: "Pumpkin leaves and waterleaf soup",
-        price: 2200,
-        minAmount: 2200,
-        image: "https://source.unsplash.com/random/300x200/?edikang+ikong",
-      },
-      {
-        id: 18,
-        name: "Fisherman Soup",
-        description: "Rich seafood soup",
-        price: 3000,
-        minAmount: 3000,
-        image: "https://source.unsplash.com/random/300x200/?fisherman+soup",
-      },
-      {
-        id: 19,
-        name: "White Rice & Stew",
-        description: "Local rice with beef stew",
-        price: 1500,
-        minAmount: 1500,
-        image: "https://source.unsplash.com/random/300x200/?rice+stew",
-      },
-      {
-        id: 20,
-        name: "Moi Moi",
-        description: "Steamed bean pudding",
-        price: 700,
-        minAmount: 700,
-        image: "https://source.unsplash.com/random/300x200/?moi+moi",
-      },
       {
         id: 21,
         name: "Edikang Ikong",
@@ -205,43 +210,43 @@ const vendors = {
         minAmount: 700,
         image: "https://source.unsplash.com/random/300x200/?moi+moi",
       },
+      {
+        id: 25,
+        name: "Edikang Ikong",
+        description: "Pumpkin leaves and waterleaf soup",
+        price: 2200,
+        minAmount: 2200,
+        image: "https://source.unsplash.com/random/300x200/?edikang+ikong",
+      },
+      {
+        id: 26,
+        name: "Fisherman Soup",
+        description: "Rich seafood soup",
+        price: 3000,
+        minAmount: 3000,
+        image: "https://source.unsplash.com/random/300x200/?fisherman+soup",
+      },
+      {
+        id: 27,
+        name: "White Rice & Stew",
+        description: "Local rice with beef stew",
+        price: 1500,
+        minAmount: 1500,
+        image: "https://source.unsplash.com/random/300x200/?rice+stew",
+      },
+      {
+        id: 28,
+        name: "Moi Moi",
+        description: "Steamed bean pudding",
+        price: 700,
+        minAmount: 700,
+        image: "https://source.unsplash.com/random/300x200/?moi+moi",
+      },
     ],
   },
   karris: {
     name: "Karris Hotpot",
     items: [
-      {
-        id: 25,
-        name: "Nkwobi",
-        description: "Spicy cow foot delicacy",
-        price: 2500,
-        minAmount: 2500,
-        image: "https://source.unsplash.com/random/300x200/?nkwobi",
-      },
-      {
-        id: 26,
-        name: "Isi Ewu",
-        description: "Spicy goat head",
-        price: 2800,
-        minAmount: 2800,
-        image: "https://source.unsplash.com/random/300x200/?isi+ewu",
-      },
-      {
-        id: 27,
-        name: "Abak Atama",
-        description: "Palm fruit soup with atama leaves",
-        price: 2000,
-        minAmount: 2000,
-        image: "https://source.unsplash.com/random/300x200/?abak+atama",
-      },
-      {
-        id: 28,
-        name: "Ukwa",
-        description: "Breadfruit porridge",
-        price: 1500,
-        minAmount: 1500,
-        image: "https://source.unsplash.com/random/300x200/?ukwa",
-      },
       {
         id: 29,
         name: "Nkwobi",
@@ -274,6 +279,38 @@ const vendors = {
         minAmount: 1500,
         image: "https://source.unsplash.com/random/300x200/?ukwa",
       },
+      {
+        id: 33,
+        name: "Nkwobi",
+        description: "Spicy cow foot delicacy",
+        price: 2500,
+        minAmount: 2500,
+        image: "https://source.unsplash.com/random/300x200/?nkwobi",
+      },
+      {
+        id: 34,
+        name: "Isi Ewu",
+        description: "Spicy goat head",
+        price: 2800,
+        minAmount: 2800,
+        image: "https://source.unsplash.com/random/300x200/?isi+ewu",
+      },
+      {
+        id: 35,
+        name: "Abak Atama",
+        description: "Palm fruit soup with atama leaves",
+        price: 2000,
+        minAmount: 2000,
+        image: "https://source.unsplash.com/random/300x200/?abak+atama",
+      },
+      {
+        id: 36,
+        name: "Ukwa",
+        description: "Breadfruit porridge",
+        price: 1500,
+        minAmount: 1500,
+        image: "https://source.unsplash.com/random/300x200/?ukwa",
+      },
     ],
   },
 };
@@ -285,7 +322,7 @@ const deliveryFee = 500;
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = "service_2lly29s";
 const EMAILJS_TEMPLATE_ID = "template_uwphwco";
-const RESTAURANT_EMAIL = "calabarnightbites@gmail.com";
+const RESTAURANT_EMAIL = "bennybeshel@gmail.com";
 
 // DOM elements
 const cartPreview = document.getElementById("cartPreview");
@@ -310,6 +347,8 @@ let slideInterval;
 document.addEventListener("DOMContentLoaded", function () {
   // Load menu items for all vendors
   loadMenuItems();
+  // Load featured items
+  loadFeaturedItems();
   // Update cart preview UI
   updateCartPreview();
   // Load saved cart from localStorage
@@ -333,6 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Load and render menu items for all vendors
 function loadMenuItems() {
   for (const vendorId in vendors) {
+    if (vendorId === "featured") continue; // Skip featured vendor for menu items
     const vendor = vendors[vendorId];
     const menuContainer = document.querySelector(`#${vendorId} .menu-items`);
 
@@ -358,6 +398,44 @@ function loadMenuItems() {
   document.querySelectorAll(".add-to-cart").forEach((button) => {
     button.addEventListener("click", addToCart);
   });
+}
+
+// Load and render featured items
+function loadFeaturedItems() {
+  const featuredContainer = document.querySelector(".featured-items");
+  if (!featuredContainer) {
+    console.error("Featured items container not found");
+    return;
+  }
+
+  const vendor = vendors.featured;
+  featuredContainer.innerHTML = ""; // Clear any existing content
+
+  vendor.items.forEach((item) => {
+    const featuredItem = document.createElement("div");
+    featuredItem.className = "featured-item";
+    featuredItem.innerHTML = `
+      <img src="${item.image}" alt="${item.name}">
+      <div class="featured-info">
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <div class="featured-footer">
+          <span class="price">₦${item.price.toLocaleString()}</span>
+          <button class="add-to-cart" data-id="${
+            item.id
+          }" data-vendor="featured">Add to Cart</button>
+        </div>
+      </div>
+    `;
+    featuredContainer.appendChild(featuredItem);
+  });
+
+  // Attach event listeners to add-to-cart buttons
+  document
+    .querySelectorAll(".featured-items .add-to-cart")
+    .forEach((button) => {
+      button.addEventListener("click", addToCart);
+    });
 }
 
 // Cart Functions
@@ -545,6 +623,7 @@ function showConfirmationModal(phone) {
   // Update modal content with provided HTML structure
   confirmationModal.innerHTML = `
     <div class="modal-content" style="max-width: 400px">
+      <span class="close" onclick="closeConfirmationModal()">×</span>
       <div class="modal-header">
         <h3>Order Confirmed! 🎉</h3>
       </div>
@@ -560,7 +639,22 @@ function showConfirmationModal(phone) {
   `;
 
   // Display modal
-  confirmationModal.style.display = "flex"; // Match CSS flexbox
+  confirmationModal.style.display = "flex";
+
+  // Add event listeners for overlay click and Esc key
+  confirmationModal.addEventListener("click", function handleOverlayClick(e) {
+    if (e.target === confirmationModal) {
+      closeConfirmationModal();
+      confirmationModal.removeEventListener("click", handleOverlayClick);
+    }
+  });
+
+  document.addEventListener("keydown", function handleEscKey(e) {
+    if (e.key === "Escape" && confirmationModal.style.display === "flex") {
+      closeConfirmationModal();
+      document.removeEventListener("keydown", handleEscKey);
+    }
+  });
 }
 
 // Carousel Functions
