@@ -1,0 +1,311 @@
+<script type="text/javascript">
+  var gk_isXlsx = false;
+  var gk_xlsxFileLookup = {};
+  var gk_fileData = {};
+  function filledCell(cell) {
+    return cell !== "" && cell != null;
+  }
+  function loadFileData(filename) {
+    if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+      try {
+        var workbook = XLSX.read(gk_fileData[filename], { type: "base64" });
+        var firstSheetName = workbook.SheetNames[0];
+        var worksheet = workbook.Sheets[firstSheetName];
+
+        // Convert sheet to JSON to filter blank rows
+        var jsonData = XLSX.utils.sheet_to_json(worksheet, {
+          header: 1,
+          blankrows: false,
+          defval: "",
+        });
+        // Filter out blank rows (rows where all cells are empty, null, or undefined)
+        var filteredData = jsonData.filter((row) => row.some(filledCell));
+
+        // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+        var headerRowIndex = filteredData.findIndex(
+          (row, index) =>
+            row.filter(filledCell).length >=
+            filteredData[index + 1]?.filter(filledCell).length
+        );
+        // Fallback
+        if (headerRowIndex === -1 || headerRowIndex > 25) {
+          headerRowIndex = 0;
+        }
+
+        // Convert filtered JSON back to CSV
+        var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+        csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+        return csv;
+      } catch (e) {
+        console.error(e);
+        return "";
+      }
+    }
+    return gk_fileData[filename] || "";
+  }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calabar Night Bites - Customer Survey</title>
+    <!-- Font Awesome CDN for spinner icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        background: #f8f8f8;
+        color: #333;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      .survey-section {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .survey-section h2 {
+        color: #8b0000;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2rem;
+      }
+      .survey-section p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+      }
+      .form-group input[type="text"],
+      .form-group input[type="email"],
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: #8b0000;
+        outline: none;
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .checkbox-group,
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .checkbox-group label,
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        font-weight: normal;
+        color: #333;
+      }
+      .checkbox-group input,
+      .radio-group input {
+        margin-right: 10px;
+      }
+      button {
+        background: #8b0000;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+      }
+      button:hover {
+        background: #a52a2a;
+        transform: translateY(-2px);
+      }
+      button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        transform: none;
+      }
+      #flashMessage {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #8b0000;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        text-align: center;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      @media (max-width: 600px) {
+        .container {
+          margin: 20px auto;
+          padding: 0 15px;
+        }
+        .survey-section {
+          padding: 20px;
+        }
+        .survey-section h2 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="survey-section">
+      <div class="container">
+        <h2>Calabar Night Bites Survey</h2>
+        <p>
+          We want to hear your thoughts on late-night food delivery (7 PM - 4:30
+          AM) in Calabar!
+        </p>
+        <form id="surveyForm">
+          <div class="form-group">
+            <label for="name">Your Name (Optional)</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email (Optional)</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              >Which challenges do you face when ordering food late at night in
+              Calabar? (Select all that apply)</label
+            >
+            <div class="checkbox-group">
+              <label
+                ><input
+                  type="checkbox"
+                  name="challenges"
+                  value="High transport costs"
+                />
+                High transport costs (e.g., Bolt prices due to fuel
+                hikes)</label
+              >
+              <label
+                ><input type="checkbox" name="challenges" value="Bad weather" />
+                Bad weather (e.g., heavy rain in Calabar)</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="challenges"
+                  value="Security concerns"
+                />
+                Security and safety concerns at night</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="challenges"
+                  value="Lack of delivery options"
+                />
+                Lack of delivery riders operating at night</label
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label
+              >Would you be willing to pay a modest service fee (₦300) and
+              delivery rate (₦500) for food delivered to your doorstep between 7
+              PM and 4:30 AM?</label
+            >
+            <div class="radio-group">
+              <label
+                ><input type="radio" name="willingToPay" value="Yes" />
+                Yes</label
+              >
+              <label
+                ><input type="radio" name="willingToPay" value="No" /> No</label
+              >
+              <label
+                ><input type="radio" name="willingToPay" value="Maybe" />
+                Maybe</label
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="comments">Additional Comments or Suggestions</label>
+            <textarea
+              id="comments"
+              name="comments"
+              placeholder="Share your thoughts..."
+            ></textarea>
+          </div>
+          <!-- Hidden inputs for EmailJS -->
+          <input type="hidden" name="name" />
+          <input type="hidden" name="email" />
+          <input type="hidden" name="challenges" />
+          <input type="hidden" name="willingToPay" />
+          <input type="hidden" name="comments" />
+          <input type="hidden" name="date" />
+          <input type="hidden" name="to_email" />
+          <button type="submit">Submit Feedback</button>
+        </form>
+      </div>
+    </section>
+    <div id="flashMessage"></div>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <!-- Survey script -->
+    <script src="survey.js"></script>
+  </body>
+</html>
