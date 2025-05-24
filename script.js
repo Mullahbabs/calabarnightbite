@@ -542,22 +542,25 @@ function showConfirmationModal(phone) {
     return;
   }
 
-  // Update modal content
+  // Update modal content with provided HTML structure
   confirmationModal.innerHTML = `
-    <div class="modal-content">
-      <span class="close" onclick="closeConfirmationModal()">×</span>
-      <h2 style="text-align: center; color: #8b0000">Order Confirmed!</h2>
-      <p style="text-align: center;">
-        Thank you for your order. We'll contact you at <strong>${phone}</strong> for delivery details.
-      </p>
-      <button onclick="closeConfirmationModal()" style="background: #8b0000; color: white; padding: 10px; border: none; width: 100%; cursor: pointer;">
-        Close
-      </button>
+    <div class="modal-content" style="max-width: 400px">
+      <div class="modal-header">
+        <h3>Order Confirmed! 🎉</h3>
+      </div>
+      <div class="modal-body">
+        <i class="fas fa-check-circle" style="font-size: 48px; color: #4caf50; margin-bottom: 20px"></i>
+        <p>We'll call you at <strong>${phone}</strong> to confirm your order.</p>
+        <p>Thank you for choosing Calabar Night Bites!</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-confirm" onclick="closeConfirmationModal()">Close</button>
+      </div>
     </div>
   `;
 
   // Display modal
-  confirmationModal.style.display = "block";
+  confirmationModal.style.display = "flex"; // Match CSS flexbox
 }
 
 // Carousel Functions
