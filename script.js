@@ -1,3 +1,4 @@
+// Vendor data (unchanged)
 const vendors = {
   daddyk: {
     name: "Daddy K's",
@@ -281,8 +282,9 @@ const vendors = {
 let cart = [];
 const serviceFee = 300;
 const deliveryFee = 500;
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbx249WiHAkfI19MrUrVWIdR9VuI7ok59cT-B5IRtF2ju9Kcf08ZIrHKt8DcQ9thpyZ1PA/exec";
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = "service_2lly29s";
+const EMAILJS_TEMPLATE_ID = "template_uwphwco";
 const RESTAURANT_EMAIL = "bennybeshel@gmail.com";
 
 // DOM elements
@@ -531,6 +533,33 @@ function closeCheckout() {
   checkoutModal.style.display = "none";
 }
 
+// Show confirmation modal with customer phone number
+function showConfirmationModal(phone) {
+  const confirmationModal = document.getElementById("confirmationModal");
+  if (!confirmationModal) {
+    console.error("Confirmation modal element not found");
+    showFlashMessage("Order placed, but confirmation modal not available.");
+    return;
+  }
+
+  // Update modal content
+  confirmationModal.innerHTML = `
+    <div class="modal-content">
+      <span class="close" onclick="closeConfirmationModal()">×</span>
+      <h2 style="text-align: center; color: #8b0000">Order Confirmed!</h2>
+      <p style="text-align: center;">
+        Thank you for your order. We'll contact you at <strong>${phone}</strong> for delivery details.
+      </p>
+      <button onclick="closeConfirmationModal()" style="background: #8b0000; color: white; padding: 10px; border: none; width: 100%; cursor: pointer;">
+        Close
+      </button>
+    </div>
+  `;
+
+  // Display modal
+  confirmationModal.style.display = "block";
+}
+
 // Carousel Functions
 // Start the carousel with automatic sliding
 function startCarousel() {
@@ -581,73 +610,30 @@ function handleScroll() {
   }
 }
 
-// Submit order to Google Apps Script
-async function submitOrder(orderData) {
-  try {
-    const submitBtn = document.querySelector(
-      '#deliveryForm button[type="submit"]'
-    );
-    submitBtn.disabled = true;
-    submitBtn.innerHTML =
-      '<i class="fas fa-spinner fa-spin"></i> Processing...';
+// Order Submission Functions
+// Send order email using EmailJS form-based submission
+function sendMail(event) {
+  event.preventDefault(); // Prevent default form submission
 
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      cache: "no-cache",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        customer: orderData.customer,
-        items: orderData.items.map((item) => ({
-          name: `${item.name} (${item.vendorName})`,
-          quantity: item.quantity,
-          price: item.amount,
-          total: item.amount * item.quantity,
-        })),
-        subtotal: orderData.subtotal,
-        serviceFee: orderData.serviceFee,
-        deliveryFee: orderData.deliveryFee,
-        total: orderData.total,
-        date: orderData.date,
-        restaurantEmail: RESTAURANT_EMAIL,
-      }),
-    });
-
-    console.log("Response status:", response.status);
-    const responseBody = await response.json(); // Changed to .json() for proper parsing
-    console.log("Response body:", responseBody);
-
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return responseBody.success === true;
-  } catch (error) {
-    console.error("Error submitting order:", error);
-    showFlashMessage(
-      "Failed to submit order. Please check your connection or contact support."
-    );
-    return false;
-  } finally {
-    const submitBtn = document.querySelector(
-      '#deliveryForm button[type="submit"]'
-    );
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Place Order";
-    }
-  }
-}
-
-// Handle form submission with validation
-deliveryForm.addEventListener("submit", async function (e) {
-  e.preventDefault();
+  // Get submit button for UI feedback
+  const submitBtn = document.querySelector(
+    '#deliveryForm button[type="submit"]'
+  );
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
   // Validate form inputs
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
   const address = document.getElementById("address").value.trim();
+  const tAndC = document.getElementById("t&c").checked;
 
-  if (!name || !phone || !address) {
+  if (!name || !phone || !address || !tAndC) {
     showFlashMessage(
-      "Please fill in all required fields (Name, Phone, Address)."
+      "Please fill in all required fields and accept Terms & Conditions."
     );
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Place Order";
     return;
   }
 
@@ -655,9 +641,31 @@ deliveryForm.addEventListener("submit", async function (e) {
   const phoneRegex = /^(\+234|0)[789]\d{9}$/;
   if (!phoneRegex.test(phone)) {
     showFlashMessage("Please enter a valid Nigerian phone number.");
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Place Order";
     return;
   }
 
+  // Sanitize inputs to prevent injection in email template
+  const sanitize = (input) => {
+    if (typeof input !== "string") return input;
+    return input.replace(
+      /[<>"'&]/g,
+      (match) =>
+        ({
+          "<": "<",
+          ">": ">",
+          '"': '"',
+          "'": "&#39;",
+          "&": "&",
+        }[match])
+    );
+  };
+
+  // Generate order ID
+  const orderId = `CNB-${Date.now().toString().slice(-4)}`;
+
+  // Construct order data
   const order = {
     customer: {
       name,
@@ -683,28 +691,71 @@ deliveryForm.addEventListener("submit", async function (e) {
     }),
   };
 
-  const success = await submitOrder(order);
+  // Format items as HTML table rows for EmailJS template
+  const itemsHtml = order.items
+    .map(
+      (item) => `
+    <tr>
+      <td>${sanitize(`${item.name} (${item.vendorName})`)}</td>
+      <td>${item.quantity}x</td>
+      <td>₦${item.amount.toLocaleString()}</td>
+      <td>₦${(item.amount * item.quantity).toLocaleString()}</td>
+    </tr>
+  `
+    )
+    .join("");
 
-  if (success) {
-    showConfirmationModal(order.customer.phone);
-    cart = [];
-    try {
-      localStorage.removeItem("nightBitesCart");
-    } catch (error) {
-      console.error("Error clearing cart from localStorage:", error);
-      showFlashMessage("Failed to clear cart. Please try again.");
-    }
-    updateCartPreview();
-    closeCheckout();
-    deliveryForm.reset();
-  } else {
-    alert(
-      `Deployment is ongoing. Please call 080-XXX-XXXX with ID: CNB-${Date.now()
-        .toString()
-        .slice(-4)}`
-    );
-  }
-});
+  // Update hidden inputs with order data
+  document.querySelector('#deliveryForm input[name="items_html"]').value =
+    itemsHtml;
+  document.querySelector('#deliveryForm input[name="subtotal"]').value =
+    order.subtotal.toLocaleString();
+  document.querySelector('#deliveryForm input[name="service_fee"]').value =
+    order.serviceFee.toLocaleString();
+  document.querySelector('#deliveryForm input[name="delivery_fee"]').value =
+    order.deliveryFee.toLocaleString();
+  document.querySelector('#deliveryForm input[name="total"]').value =
+    order.total.toLocaleString();
+  document.querySelector('#deliveryForm input[name="date"]').value = sanitize(
+    order.date
+  );
+  document.querySelector('#deliveryForm input[name="order_id"]').value =
+    orderId;
+  document.querySelector('#deliveryForm input[name="to_email"]').value =
+    RESTAURANT_EMAIL;
+
+  // Send form data via EmailJS
+  emailjs
+    .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, "#deliveryForm")
+    .then(
+      (result) => {
+        console.log("EmailJS success:", result);
+        showFlashMessage("Order placed successfully!");
+        showConfirmationModal(order.customer.phone);
+        cart = [];
+        try {
+          localStorage.removeItem("nightBitesCart");
+        } catch (error) {
+          console.error("Error clearing cart from localStorage:", error);
+          showFlashMessage("Failed to clear cart. Please try again.");
+        }
+        updateCartPreview();
+        closeCheckout();
+        deliveryForm.reset();
+      },
+      (error) => {
+        console.error("Error submitting order:", error);
+        showFlashMessage(
+          "Failed to submit order. Please check your connection or contact support."
+        );
+        alert(`Order failed. Please call 080-XXX-XXXX with ID: ${orderId}`);
+      }
+    )
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Place Order";
+    });
+}
 
 // Tab Functions
 // Open a specific tab

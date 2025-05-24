@@ -237,32 +237,43 @@
     </div>
 
     <!-- Checkout Form -->
+    <div id="cartPreview"></div>
+    <div id="cartModal"></div>
     <div class="modal" id="checkoutModal">
       <div class="modal-content">
-        <span class="close" onclick="closeCheckout()">&times;</span>
+        <span class="close" onclick="closeCheckout()">×</span>
         <h2 style="text-align: center; color: #8b0000">Complete Your Order</h2>
-        <form id="deliveryForm">
+        <form id="deliveryForm" onsubmit="sendMail(event)">
           <div class="form-group">
             <label for="name">Your Name</label>
-            <input type="text" id="name" required />
+            <input type="text" name="name" id="name" required />
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" required />
+            <input type="tel" name="phone" id="phone" required />
           </div>
           <div class="form-group">
             <label for="address">Delivery Address</label>
-            <textarea id="address" required></textarea>
+            <textarea name="address" id="address" required></textarea>
           </div>
           <div class="form-group">
             <label for="instructions">Special Instructions</label>
-            <textarea id="instructions"></textarea>
+            <textarea name="instructions" id="instructions"></textarea>
           </div>
           <p style="text-align: center; color: #4caf50">
-            <label for="t&c">Accept Terms &amp; Conditions</label>
-            <input type="checkbox" id="t&c" required />
+            <label for="t&c">Accept Terms & Conditions</label>
+            <input type="checkbox" name="t&c" id="t&c" required />
           </p>
-          <button type="submit" onclick="submitOrder()">Confirm Order</button>
+          <!-- Hidden inputs for order data -->
+          <input type="hidden" name="items_html" />
+          <input type="hidden" name="subtotal" />
+          <input type="hidden" name="service_fee" />
+          <input type="hidden" name="delivery_fee" />
+          <input type="hidden" name="total" />
+          <input type="hidden" name="date" />
+          <input type="hidden" name="order_id" />
+          <input type="hidden" name="to_email" />
+          <button type="submit">Place Order</button>
         </form>
       </div>
     </div>
@@ -574,6 +585,12 @@
 
     <script>
       new WOW().init();
+    </script>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <script>
+      emailjs.init("_PEwD_ZbRO1EoYbHU");
     </script>
   </body>
 </html>
