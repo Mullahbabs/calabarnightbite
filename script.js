@@ -285,7 +285,7 @@ const deliveryFee = 500;
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = "service_2lly29s";
 const EMAILJS_TEMPLATE_ID = "template_uwphwco";
-const RESTAURANT_EMAIL = "bennybeshel@gmail.com";
+const RESTAURANT_EMAIL = "calabarnightbites@gmail.com";
 
 // DOM elements
 const cartPreview = document.getElementById("cartPreview");
