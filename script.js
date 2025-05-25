@@ -78,7 +78,7 @@ const vendors = {
         description: "Irish potato chips with chicken",
         price: 5100,
         minAmount: 5100,
-        image: "img/chickenchips.PNG",
+        image: "img/chickenchips.png",
       },
       {
         id: 10,
@@ -86,7 +86,7 @@ const vendors = {
         description: "Hot steamed beans moi-moi",
         price: 1050,
         minAmount: 1050,
-        image: "img/moimoi.PNG",
+        image: "img/moimoi.png",
       },
       {
         id: 11,
