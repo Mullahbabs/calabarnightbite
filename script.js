@@ -94,7 +94,7 @@ const vendors = {
         description: "Spicy fried fish ",
         price: 200,
         minAmount: 200,
-        image: "img/plaindodo.png",
+        image: "img/fish.png",
       },
       {
         id: 12,
