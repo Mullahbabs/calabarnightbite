@@ -1479,8 +1479,11 @@ body {
 }
 
 /* Special Card Treatments */
+.fuel-discount {
+  border-top: 4px solid #4caf50;
+}
 .fuel-discount .ad-badge {
-  background-color: #4caf50;
+  background-color: #2196f3;
   color: white;
 }
 
@@ -1490,6 +1493,10 @@ body {
 
 .safety-partner {
   border-top: 4px solid #8b0000;
+}
+.safety-partner .ad-badge {
+  background-color: #4caf50;
+  color: white;
 }
 
 /* Responsive Adjustments */
