@@ -1366,6 +1366,7 @@ body {
 @media (max-width: 768px) {
   .legal-banner {
     height: 250px;
+    margin-top: 30px;
   }
 
   .legal-banner h1 {
@@ -1380,6 +1381,7 @@ body {
 @media (max-width: 480px) {
   .legal-banner {
     height: 250px;
+    margin-top: 30px;
   }
 
   .legal-banner h1 {
