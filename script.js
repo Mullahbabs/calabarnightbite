@@ -46,7 +46,7 @@ const vendors = {
         description: "Hot Nodles & Egg (Boiled or Fried)",
         price: 950,
         minAmount: 950,
-        image: "img/noodles.JPG",
+        image: "img/noodles.jpg",
       },
       {
         id: 6,
@@ -54,7 +54,7 @@ const vendors = {
         description: "Tasty fried rice with chicken (salad optional)",
         price: 3100,
         minAmount: 3100,
-        image: "img/daddykfried.PNG",
+        image: "img/daddykfried.png",
       },
       {
         id: 7,
@@ -62,7 +62,7 @@ const vendors = {
         description: "Spicy tomato rice with chicken",
         price: 3100,
         minAmount: 3100,
-        image: "img/m8.JPG",
+        image: "img/m8.jpg",
       },
       {
         id: 8,
@@ -70,7 +70,7 @@ const vendors = {
         description: "Ripe plantain & eggs,fried to perfection",
         price: 800,
         minAmount: 800,
-        image: "img/dodo.JPG",
+        image: "img/dodo.jpg",
       },
       {
         id: 9,
@@ -94,7 +94,7 @@ const vendors = {
         description: "Spicy fried fish ",
         price: 200,
         minAmount: 200,
-        image: "img/plaindodo.PNG",
+        image: "img/plaindodo.png",
       },
       {
         id: 12,
@@ -102,7 +102,7 @@ const vendors = {
         description: "Ripe plantain fried to perfection",
         price: 200,
         minAmount: 200,
-        image: "img/plaindodo.PNG",
+        image: "img/plaindodo.png",
       },
     ],
   },
