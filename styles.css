@@ -1365,7 +1365,7 @@ body {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .legal-banner {
-    height: 200px;
+    height: 250px;
   }
 
   .legal-banner h1 {
