@@ -1334,7 +1334,7 @@ body {
 
 .legal-banner h1 {
   font-size: 2.8rem;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #fff;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
@@ -1381,7 +1381,7 @@ body {
 @media (max-width: 480px) {
   .legal-banner {
     height: 250px;
-    margin-top: 30px;
+    margin-top: 40px;
   }
 
   .legal-banner h1 {
