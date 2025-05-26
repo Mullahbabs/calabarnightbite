@@ -878,6 +878,7 @@ body {
   height: 200px;
   object-fit: cover;
   display: block;
+  border-top: 4px solid #2196f3;
 }
 
 .featured-info {
