@@ -92,9 +92,9 @@ const vendors = {
         id: 11,
         name: "Fried Fish",
         description: "Spicy fried fish ",
-        price: 200,
-        minAmount: 200,
-        image: "img/fish.png",
+        price: 500,
+        minAmount: 500,
+        image: "img/fish.jpg",
       },
       {
         id: 12,
