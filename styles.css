@@ -1145,6 +1145,11 @@ body {
   font-size: 0.9rem;
 }
 
+.footer-bottom a {
+  color: #2196f3;
+  text-decoration: none;
+}
+
 .payment-methods {
   display: flex;
   gap: 15px;
