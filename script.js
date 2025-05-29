@@ -317,8 +317,8 @@ const vendors = {
 
 // Cart state and constants
 let cart = [];
-const serviceFee = 300;
-const deliveryFee = 500;
+const serviceFee = 500;
+const deliveryFee = 1500;
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = "service_2lly29s";
 const EMAILJS_TEMPLATE_ID = "template_uwphwco";
