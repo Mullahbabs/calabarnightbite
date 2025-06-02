@@ -1533,3 +1533,37 @@ body {
     height: 150px;
   }
 }
+
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+body.dark-mode header {
+  background: linear-gradient(90deg, #1c2526, #2e3b3e);
+}
+body.dark-mode .tabs {
+  background-color: #2e3b3e;
+}
+body.dark-mode .menu-section,
+body.dark-mode .about-section p {
+  color: #e9ecef;
+}
+body.dark-mode .about-section {
+  background-color: #2e3b3e;
+}
+body.dark-mode .cart-page,
+body.dark-mode .checkout-page,
+body.dark-mode .cart-preview {
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .menu-item {
+  background-color: #3a3a3a;
+  color: #f8f9fa;
+}
+body.dark-mode .menu-item p {
+  color: #fff;
+}
+body.dark-mode .menu-item h3 {
+  color: #ffd700;
+}

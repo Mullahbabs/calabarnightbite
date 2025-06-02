@@ -889,3 +889,17 @@ document.querySelectorAll(".legal-tab").forEach((tab) => {
 window.closeConfirmationModal = function () {
   document.getElementById("confirmationModal").style.display = "none";
 };
+
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  const isDark = document.body.classList.contains("dark-mode");
+  document.getElementById("theme-toggle").textContent = isDark
+    ? "☀️ Light Mode"
+    : "🌙 Night Mode";
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+// Apply saved theme on load
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
+  document.getElementById("theme-toggle").textContent = "☀️ Light Mode";
+}
