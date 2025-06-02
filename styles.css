@@ -1578,3 +1578,41 @@ body.dark-mode .menu-item p {
 body.dark-mode .menu-item h3 {
   color: #ffd700;
 }
+
+body.dark-mode .featured-section {
+  background-color: #1c2526;
+}
+body.dark-mode .featured-item {
+  background-color: #2e3b3e;
+  color: #f8f9fa;
+}
+body.dark-mode .featured-item p {
+  color: #fff;
+}
+body.dark-mode .featured-item h3 {
+  color: #ffd700;
+}
+
+body.dark-mode .ad-section {
+  background-color: #2e3b3e;
+}
+body.dark-mode .ad-card {
+  background-color: #1c2526;
+}
+body.dark-mode .ad-card h3 {
+  color: #ffd700;
+}
+body.dark-mode .ad-card p {
+  color: #f9f9f9;
+}
+
+body.dark-mode .testimonials-section {
+  background-color: #1c2526;
+}
+
+body.dark-mode .section-title {
+  color: #fff;
+}
+body.dark-mode .section-subtitle {
+  color: #4caf50;
+}
