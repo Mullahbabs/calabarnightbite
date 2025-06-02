@@ -1596,6 +1596,10 @@ body.dark-mode .featured-item h3 {
   color: #ffd700;
 }
 
+body.dark-mode .featured-item .price {
+  color: #4caf50;
+}
+
 body.dark-mode .ad-section {
   background-color: #2e3b3e;
 }

@@ -43,7 +43,7 @@ const vendors = {
       {
         id: 5,
         name: "Noodles & Egg ",
-        description: "Hot Nodles & Egg (Boiled or Fried)",
+        description: "Hot Noodles & Egg (Boiled or Fried)",
         price: 950,
         minAmount: 950,
         image: "img/noodles.jpg",
