@@ -1621,6 +1621,9 @@ body.dark-mode .ad-card p {
 body.dark-mode .testimonials-section {
   background-color: #1c2526;
 }
+body.dark-mode .testimonials-section h4 {
+  color: #28a745;
+}
 
 body.dark-mode .section-title {
   color: #fff;
