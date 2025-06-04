@@ -736,7 +736,10 @@ body {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--box-shadow);
-  border-top: 5px solid #ffd700;
+  border-top: 5px solid #8b0000;
+  border-left: 5px solid #ffd700;
+  border-bottom: 5px solid #8b0000;
+  border-right: 5px solid #ffd700;
 }
 
 .about-image img {
@@ -994,9 +997,13 @@ body {
 /* CTA Section */
 .cta-section {
   padding: 80px 0;
-  background-color: var(--primary-color);
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("img/cta3.jpg") no-repeat center center;
   color: white;
   text-align: center;
+  background-size: cover;
+  justify-content: center;
+  height: 80vh;
 }
 
 .cta-section h2 {
@@ -1634,4 +1641,8 @@ body.dark-mode .section-subtitle {
 
 body.dark-mode .navbar {
   background-color: #ffd700;
+}
+
+body.dark-mode .ad-section .fuel-discount {
+  border-top: 4px solid #ffd700;
 }
