@@ -148,6 +148,10 @@ body {
   position: relative;
   justify-content: center;
   border: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  box-shadow: var(--dark-color);
+  cursor: pointer;
 }
 .nav-links {
   display: flex;
@@ -283,7 +287,7 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(241, 211, 9, 0.4);
   color: white;
   border: none;
   font-size: 2rem;
