@@ -174,7 +174,7 @@ const vendors = {
         description: "Fried Irish potato chips (mini pack)",
         price: 2200,
         minAmount: 2200,
-        image: "img/fish.jpg",
+        image: "img/irishchipsmini.jpg",
       },
       {
         id: 22,
@@ -182,7 +182,7 @@ const vendors = {
         description: "Fried Irish potato chips (maxi pack)",
         price: 3200,
         minAmount: 3200,
-        image: "img/fish.jpg",
+        image: "img/irishchips.jpg",
       },
       {
         id: 23,
@@ -190,7 +190,7 @@ const vendors = {
         description: "Fried sweet potato chips (mini pack)",
         price: 1200,
         minAmount: 1200,
-        image: "img/fish.jpg",
+        image: "img/sweetchipsmini.jpg",
       },
       {
         id: 24,
@@ -198,7 +198,7 @@ const vendors = {
         description: "Fried sweet potato chips (maxi pack)",
         price: 1700,
         minAmount: 1700,
-        image: "img/fish.jpg",
+        image: "img/sweetchipsmaxi.jpg",
       },
       {
         id: 25,
@@ -214,7 +214,7 @@ const vendors = {
         description: "Peppered goat meat (one stick)",
         price: 1200,
         minAmount: 1200,
-        image: "img/fish.jpg",
+        image: "img/goat.jpg",
       },
       {
         id: 27,
@@ -222,7 +222,7 @@ const vendors = {
         description: "peppered cow leg (one piece)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/cowleg.jpg",
       },
       {
         id: 28,
@@ -230,7 +230,7 @@ const vendors = {
         description: "peppered sharki (one piece)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/sharki.jpg",
       },
       {
         id: 29,
@@ -238,7 +238,7 @@ const vendors = {
         description: "peppered kpomo (one piece)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/kpomo.jpg",
       },
       {
         id: 30,
@@ -246,7 +246,7 @@ const vendors = {
         description: "peppered beef (one piece)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/beef.jpg",
       },
       {
         id: 31,
@@ -254,23 +254,23 @@ const vendors = {
         description: "peppered snails (one stick)",
         price: 1200,
         minAmount: 1200,
-        image: "img/fish.jpg",
+        image: "img/snail.jpg",
       },
       {
         id: 32,
-        name: "Salad",
-        description: "Vegetable salad (on plate)",
+        name: "Coleslaw Salad",
+        description: "Vegetable salad (As top)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/salad.jpg",
       },
       {
         id: 33,
-        name: "Salad",
+        name: "ColeslawSalad",
         description: "Vegetable salad (cup size)",
         price: 1100,
         minAmount: 1100,
-        image: "img/fish.jpg",
+        image: "img/saladcup.jpg",
       },
       {
         id: 34,
@@ -278,7 +278,7 @@ const vendors = {
         description: "Boiled egg (one piece)",
         price: 450,
         minAmount: 450,
-        image: "img/fish.jpg",
+        image: "img/boiledegg.jpg",
       },
       {
         id: 35,
@@ -286,7 +286,7 @@ const vendors = {
         description: "Fried egg (one piece)",
         price: 450,
         minAmount: 450,
-        image: "img/fish.jpg",
+        image: "img/friedegg.jpg",
       },
     ],
   },
@@ -299,7 +299,7 @@ const vendors = {
         description: "One Indomie & One egg, (mini pack)",
         price: 950,
         minAmount: 950,
-        image: "img/noodles.jpg",
+        image: "img/ifecomininoodles.jpg",
       },
       {
         id: 2,
@@ -307,7 +307,7 @@ const vendors = {
         description: "Two pack Indomie & one egg, (maxi pack)",
         price: 1600,
         minAmount: 1600,
-        image: "img/noodles.jpg",
+        image: "img/ifecomaxinoodles.jpg",
       },
       {
         id: 3,
@@ -315,7 +315,7 @@ const vendors = {
         description: "Tasty fried rice (mini pack)",
         price: 950,
         minAmount: 950,
-        image: "img/daddykfried.png",
+        image: "img/ifecofried.jpg",
       },
       {
         id: 4,
@@ -323,7 +323,7 @@ const vendors = {
         description: "Tasty fried rice (maxi pack)",
         price: 1700,
         minAmount: 1700,
-        image: "img/daddykfried.png",
+        image: "img/ifecofriedmax.jpg",
       },
       {
         id: 5,
@@ -331,7 +331,7 @@ const vendors = {
         description: "Spicy tomato rice (mini pack)",
         price: 950,
         minAmount: 950,
-        image: "img/m8.jpg",
+        image: "img/ifecojollofmini.jpg",
       },
       {
         id: 6,
@@ -339,7 +339,7 @@ const vendors = {
         description: "Spicy tomato rice (maxi pack)",
         price: 1700,
         minAmount: 1700,
-        image: "img/m8.jpg",
+        image: "img/ifecojollofmax.jpg",
       },
       {
         id: 7,
@@ -347,7 +347,7 @@ const vendors = {
         description: "Spicy coconut rice (mini pack)",
         price: 1200,
         minAmount: 1200,
-        image: "img/m8.jpg",
+        image: "img/ifecococonutmini.jpg",
       },
       {
         id: 8,
@@ -355,7 +355,7 @@ const vendors = {
         description: "Spicy coconut rice (maxi pack)",
         price: 1700,
         minAmount: 1700,
-        image: "img/m8.jpg",
+        image: "img/ifecococonutmax.jpg",
       },
       {
         id: 9,
@@ -363,7 +363,7 @@ const vendors = {
         description: "Ripe plantain fried to perfection (3 pieces)",
         price: 500,
         minAmount: 500,
-        image: "img/plaindodo.png",
+        image: "img/ifecododo.jpg",
       },
       {
         id: 10,
@@ -371,7 +371,7 @@ const vendors = {
         description: "Well fried chicken wing",
         price: 3200,
         minAmount: 3200,
-        image: "img/chickenchips.png",
+        image: "img/ifecochickenwing.jpg",
       },
       {
         id: 11,
@@ -379,7 +379,7 @@ const vendors = {
         description: "Well fried chicken lap",
         price: 1700,
         minAmount: 1700,
-        image: "img/chickenchips.png",
+        image: "img/ifecochickenlap.jpg",
       },
       {
         id: 12,
@@ -387,7 +387,7 @@ const vendors = {
         description: "Hot steamed beans moi-moi",
         price: 1100,
         minAmount: 1100,
-        image: "img/moimoi.png",
+        image: "img/ifecomoimoi.jpg",
       },
       {
         id: 13,
@@ -395,7 +395,7 @@ const vendors = {
         description: "Spicy fried Turkey",
         price: 5200,
         minAmount: 5200,
-        image: "img/fish.jpg",
+        image: "img/ifecoturkey.jpg",
       },
       {
         id: 14,
@@ -403,7 +403,7 @@ const vendors = {
         description: "Spicy Fried Titus fish (middle piece)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/ifecofishmiddle.jpg",
       },
       {
         id: 15,
@@ -411,7 +411,7 @@ const vendors = {
         description: "Spicy Fried Titus fish (tail piece)",
         price: 1000,
         minAmount: 1000,
-        image: "img/fish.jpg",
+        image: "img/ifecofishtail.jpg",
       },
       {
         id: 16,
@@ -419,7 +419,7 @@ const vendors = {
         description: "Fried croaker fish (middle piece)",
         price: 1600,
         minAmount: 1600,
-        image: "img/fish.jpg",
+        image: "img/ifecocroakermid.jpg",
       },
       {
         id: 17,
@@ -427,7 +427,7 @@ const vendors = {
         description: "Fried croaker fish (tail piece)",
         price: 2100,
         minAmount: 2100,
-        image: "img/fish.jpg",
+        image: "img/ifecocroakertail.jpg",
       },
       {
         id: 18,
@@ -435,7 +435,7 @@ const vendors = {
         description: "Fried croaker fish (head piece)",
         price: 1600,
         minAmount: 1600,
-        image: "img/fish.jpg",
+        image: "img/ifecocroakerhead.jpg",
       },
       {
         id: 19,
@@ -443,7 +443,7 @@ const vendors = {
         description: "Fried Irish potato chips (mini pack)",
         price: 2200,
         minAmount: 2200,
-        image: "img/fish.jpg",
+        image: "img/ifecoirishmini.jpg",
       },
       {
         id: 20,
@@ -451,7 +451,7 @@ const vendors = {
         description: "Fried Irish potato chips (maxi pack)",
         price: 3200,
         minAmount: 3200,
-        image: "img/fish.jpg",
+        image: "img/ifecoirishmax.jpg",
       },
       {
         id: 21,
@@ -459,7 +459,7 @@ const vendors = {
         description: "Fried sweet potato chips (mini pack)",
         price: 1200,
         minAmount: 1200,
-        image: "img/fish.jpg",
+        image: "img/ifecosweetmin.jpg",
       },
       {
         id: 22,
@@ -467,7 +467,7 @@ const vendors = {
         description: "Fried sweet potato chips (maxi pack)",
         price: 1700,
         minAmount: 1700,
-        image: "img/fish.jpg",
+        image: "img/ifecosweetmax.jpg",
       },
       {
         id: 23,
@@ -475,7 +475,7 @@ const vendors = {
         description: "1 piece fried chicken gizzard",
         price: 1600,
         minAmount: 1600,
-        image: "img/fish.jpg",
+        image: "img/gizzard.jpg",
       },
       {
         id: 24,
@@ -483,7 +483,7 @@ const vendors = {
         description: "Peppered goat meat (one Piece)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/ifecogoat.jpg",
       },
       {
         id: 25,
@@ -491,15 +491,15 @@ const vendors = {
         description: "peppered kpomo (one piece)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/ifecokpomo.jpg",
       },
       {
         id: 26,
         name: "Beef",
-        description: "peppered beef (one piece)",
+        description: "fried beef (one piece)",
         price: 300,
         minAmount: 300,
-        image: "img/fish.jpg",
+        image: "img/ifecobeef.jpg",
       },
       {
         id: 27,
@@ -507,23 +507,23 @@ const vendors = {
         description: "peppered snails (one stick)",
         price: 1200,
         minAmount: 1200,
-        image: "img/fish.jpg",
+        image: "img/snail.jpg",
       },
       {
         id: 28,
-        name: "Salad",
-        description: "Vegetable salad (on plate)",
+        name: "Coleslaw Salad",
+        description: "Vegetable salad (as top)",
         price: 600,
         minAmount: 600,
-        image: "img/fish.jpg",
+        image: "img/salad.jpg",
       },
       {
         id: 29,
-        name: "Salad",
+        name: "ColeslawSalad",
         description: "Vegetable salad (cup size)",
         price: 1100,
         minAmount: 1100,
-        image: "img/fish.jpg",
+        image: "img/saladcup.jpg",
       },
       {
         id: 30,
@@ -531,7 +531,7 @@ const vendors = {
         description: "Boiled egg (one piece)",
         price: 450,
         minAmount: 450,
-        image: "img/fish.jpg",
+        image: "img/boiledegg.jpg",
       },
       {
         id: 31,
@@ -539,7 +539,7 @@ const vendors = {
         description: "Fried egg (one piece)",
         price: 450,
         minAmount: 450,
-        image: "img/fish.jpg",
+        image: "img/friedegg.jpg",
       },
     ],
   },
@@ -621,7 +621,7 @@ const vendors = {
         description: "Hot Ekpang with fish & cow-skin (mini pack)",
         price: 3200,
         minAmount: 3200,
-        image: "https://source.unsplash.com/random/300x200/?nkwobi",
+        image: "img/ekpangmini.jpg",
       },
       {
         id: 30,
@@ -629,7 +629,7 @@ const vendors = {
         description: "Hot Ekpang with fish, cow-skin, goat meat (medium pack)",
         price: 4200,
         minAmount: 4200,
-        image: "https://source.unsplash.com/random/300x200/?nkwobi",
+        image: "img/ekpangmax.jpg",
       },
       {
         id: 31,
@@ -638,23 +638,23 @@ const vendors = {
           "Hot Ekpang with fish, cow-skin, goat meat & snails (maxi pack)",
         price: 5200,
         minAmount: 5200,
-        image: "https://source.unsplash.com/random/300x200/?nkwobi",
+        image: "img/ekpangpromax.jpg",
       },
       {
         id: 32,
-        name: "White Rice & Ofuaku",
+        name: "White Rice & Ofe-akwu",
         description: "white rice & banga sauce (mini)",
         price: 2800,
         minAmount: 2800,
-        image: "https://source.unsplash.com/random/300x200/?isi+ewu",
+        image: "img/ofeakwu1.jpg",
       },
       {
         id: 33,
-        name: "White Rice & Ofuaku",
+        name: "White Rice & Ofe-akwu",
         description: "white rice & banga sauce (maxi)",
         price: 3200,
         minAmount: 3200,
-        image: "https://source.unsplash.com/random/300x200/?isi+ewu",
+        image: "img/ofeakwu.jpg",
       },
       {
         id: 34,
@@ -662,7 +662,7 @@ const vendors = {
         description: "Eba & afang soup",
         price: 1700,
         minAmount: 1700,
-        image: "https://source.unsplash.com/random/300x200/?abak+atama",
+        image: "img/afang.jpg",
       },
       {
         id: 35,
@@ -670,7 +670,7 @@ const vendors = {
         description: "Eba & vegetable soup",
         price: 1700,
         minAmount: 1700,
-        image: "https://source.unsplash.com/random/300x200/?abak+atama",
+        image: "img/vegetable.jpg",
       },
       {
         id: 36,
@@ -678,7 +678,7 @@ const vendors = {
         description: "Eba & bitter-leaf soup",
         price: 1700,
         minAmount: 1700,
-        image: "https://source.unsplash.com/random/300x200/?abak+atama",
+        image: "img/bitterfeaf.jpg",
       },
       {
         id: 37,
@@ -686,7 +686,7 @@ const vendors = {
         description: "Eba & editang soup",
         price: 1700,
         minAmount: 1700,
-        image: "https://source.unsplash.com/random/300x200/?abak+atama",
+        image: "img/editang.jpg",
       },
       {
         id: 38,
@@ -694,7 +694,7 @@ const vendors = {
         description: "Hard boiled egg",
         price: 300,
         minAmount: 300,
-        image: "https://source.unsplash.com/random/300x200/?ukwa",
+        image: "img/boiledegg.jpg",
       },
     ],
   },
