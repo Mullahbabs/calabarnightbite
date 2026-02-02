@@ -703,7 +703,7 @@ const vendors = {
 // Cart state and constants
 let cart = [];
 const serviceFee = 500;
-const deliveryFee = 2000;
+const deliveryFee = 2500;
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = "service_2lly29s";
 const EMAILJS_TEMPLATE_ID = "template_uwphwco";
