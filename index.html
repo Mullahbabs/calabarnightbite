@@ -1,405 +1,360 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <header>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calabar Night Bites - Street Food Delivery</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Calabar Night Bites | Late Night Food Delivery</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-      href="lib/owlcarousel/assets/owl.carousel.min.css"
-      rel="stylesheet"
-    />
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <link href="lib/animate/animate.min.css" rel="stylesheet" />
-
-     <style>
-        /* Delivery Areas Pop-up Modal Styles */
-        .calabarnightbites-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(5, 10, 20, 0.20);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 0;
-            animation: calabarnightbites-fadeIn 0.4s ease-out forwards;
-            backdrop-filter: blur(5px);
-        }
-        
-        @keyframes calabarnightbites-fadeIn {
-            to { opacity: 1; }
-        }
-        
-        .calabarnightbites-modal-content {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
-            width: 90%;
-            max-width: 600px;
-            height: 100%;
-            max-height: 90vh;
-            border-radius: 20px;
-            overflow: scroll;
-            box-shadow: 0 25px 60px rgba(255, 107, 53, 0.25);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            transform: translateY(-40px) scale(0.95);
-            animation: calabarnightbites-modalSlideUp 0.5s ease-out 0.3s forwards;
-        }
-        
-        @keyframes calabarnightbites-modalSlideUp {
-            to { 
-                transform: translateY(0) scale(1); 
-            }
-        }
-        
-        .calabarnightbites-modal-header {
-            background: linear-gradient(90deg, #ff6b35, #ff8e53);
-            color: #0a0f1e;
-            padding: 30px 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .calabarnightbites-modal-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .calabarnightbites-modal-title i {
-            font-size: 2rem;
-        }
-        
-        .calabarnightbites-close-button {
-            background: rgba(10, 15, 30, 0.3);
-            border: none;
-            color: #0a0f1e;
-            font-size: 2.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .calabarnightbites-close-button:hover {
-            background: rgba(10, 15, 30, 0.5);
-            transform: rotate(90deg) scale(1.1);
-        }
-        
-        .calabarnightbites-modal-body {
-            padding: 40px;
-        }
-        
-        .calabarnightbites-modal-message {
-            font-size: 1.3rem;
-            line-height: 1.7;
-            margin-bottom: 35px;
-            color: #d1dae9;
-            text-align: center;
-            padding: 0 10px;
-        }
-        
-        .calabarnightbites-delivery-areas {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-        
-        .calabarnightbites-area-item {
-            background: rgba(255, 107, 53, 0.1);
-            padding: 18px 15px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid rgba(255, 107, 53, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .calabarnightbites-area-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .calabarnightbites-area-item:hover::before {
-            left: 100%;
-        }
-        
-        .calabarnightbites-area-item:hover {
-            background: rgba(255, 107, 53, 0.2);
-            border-color: rgba(255, 107, 53, 0.4);
-            transform: translateY(-5px);
-        }
-        
-        .calabarnightbites-area-name {
-            font-weight: 600;
-            color: #ff8e53;
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .calabarnightbites-modal-note {
-            background: rgba(30, 41, 59, 0.8);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #ff6b35;
-            color: #a5b4cb;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            text-align: center;
-        }
-        
-        .calabarnightbites-modal-note strong {
-            color: #ff8e53;
-        }
-        
-        .calabarnightbites-delivery-icon {
-            display: inline-block;
-            margin-right: 10px;
-            color: #ff6b35;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .calabarnightbites-modal-title {
-                font-size: 1.8rem;
-            }
-            
-            .calabarnightbites-delivery-areas {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            
-            .calabarnightbites-modal-body {
-                padding: 25px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .calabarnightbites-delivery-areas {
-                grid-template-columns: 1fr;
-            }
-            
-            .calabarnightbites-modal-header {
-                padding: 20px;
-            }
-        }
-    </style>
-  </header>
-
-  
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍴</text></svg>"
+    />
+  </head>
   <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Header -->
+    <header>
       <div class="container">
-        <a href="index.html" class="logo"
-          ><img src="img/logo1.png" /> Calabar<span>NightBites</span></a
-        >
-        <div class="nav-links">
-          <a href="index.html" class="active">Home</a>
-          <a href="menu.html">Menu</a>
-          <a href="about.html">About</a>
-          <a href="survey.html">Feedback</a>
-          <button class="theme-switch" id="theme-toggle">🌙 Dark Mode</button>
+        <div class="nav-container">
+          <a href="#" class="logo">
+            <i class="fas fa-utensils"></i>
+            <span>Calabar Night Bites</span>
+          </a>
+          <div class="nav-controls">
+            <button class="theme-toggle" id="themeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
+            <button class="cart-btn" id="cartBtn">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </button>
+          </div>
         </div>
-        <button class="hamburger">
-          <i class="fas fa-bars"></i>
-        </button>
       </div>
-    </nav>
+    </header>
 
     <!-- Hero Carousel -->
-    <div class="hero-carousel">
-      <div class="carousel-inner">
-        <div
-          class="carousel-item active"
-          style="background-image: url('img/b1.jpg')"
-        >
-          <div class="carousel-content">
-            <h2 class="wow fadeInLeft" data-wow-delay="0.2s">
-              Authentic <br />Calabar Street Food
-            </h2>
-            <p class="wow fadeInDown" data-wow-delay="0.4s">
-              Delivered hot to your doorstep
-            </p>
-            <a href="menu.html" class="btn wow fadeInUp" data-wow-delay="0.6s">Order Now</a>
+    <section class="hero-carousel">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="img/m2.jpg" class="slide-image" alt="Night Food" />
+            <div class="slide-overlay">
+              <h1>Night Bites, Day Delights</h1>
+              <p>
+                Order from the best restaurants in Calabar, open late into the
+                night. Delivered hot and fresh to your doorstep.
+              </p>
+              <div class="time-display">
+                <i class="fas fa-clock"></i>
+                <span id="currentTime">Loading...</span> •
+                <span id="serviceStatus" style="color: var(--accent)"
+                  >Service: Active</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="img/b33.jpg" class="slide-image" alt="Grill" />
+            <div class="slide-overlay">
+              <h1>Midnight Grills</h1>
+              <p>
+                Sizzling hot grills delivered to you 24/7. Best suya in town,
+                right at your doorstep.
+              </p>
+              <div class="time-display">
+                <i class="fas fa-clock"></i>
+                <span>Loading...</span> •
+                <span style="color: var(--accent)">Delivery: 30-45 mins</span>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="img/m4.jpg" class="slide-image" alt="Local Food" />
+            <div class="slide-overlay">
+              <h1>Local Delicacies</h1>
+              <p>
+                Authentic Calabar cuisine made with love. Edikaikong, Afang, and
+                more!
+              </p>
+              <div class="time-display">
+                <i class="fas fa-clock"></i>
+                <span>Loading...</span> •
+                <span style="color: var(--accent)"
+                  >Traditional Taste Guaranteed</span
+                >
+              </div>
+            </div>
           </div>
         </div>
-        <div class="carousel-item" style="background-image: url('img/b2.jpg')">
-          <div class="carousel-content">
-            <h2 class="wow fadeInLeft" data-wow-delay="0.2s">
-              Nightlife Specials
-            </h2>
-            <p class="wow fadeInLeft" data-wow-delay="0.4s">
-              Perfect meals for your late-night cravings
-            </p>
-            <a href="menu.html" class="btn wow fadeInUp" data-wow-delay="0.6s">View Menu</a>
-          </div>
-        </div>
-        <div class="carousel-item" style="background-image: url('img/b3.jpg')">
-          <div class="carousel-content">
-            <h2 class="wow fadeInLeft" data-wow-delay="0.2s">
-              Local Vendors, Global Taste
-            </h2>
-            <p class="wow fadeInLeft" data-wow-delay="0.4s">
-              Supporting Calabar's best street food chefs
-            </p>
-            <a href="about.html" class="btn wow fadeInUp" data-wow-delay="0.6s">Our Story</a>
-          </div>
-        </div>
+        <div class="swiper-pagination"></div>
       </div>
-      <button class="carousel-control prev" onclick="moveSlide(-1)">
-        &#10094;
-      </button>
-      <button class="carousel-control next" onclick="moveSlide(1)">
-        &#10095;
-      </button>
-      <div class="carousel-indicators">
-        <span class="indicator active" onclick="goToSlide(0)"></span>
-        <span class="indicator" onclick="goToSlide(1)"></span>
-        <span class="indicator" onclick="goToSlide(2)"></span>
-      </div>
-    </div>
+    </section>
 
     <!-- About Us Section -->
     <section class="about-section">
       <div class="container">
-        <div
-          class="about-content wow fadeIn"
-          data-wow-duration="1s"
-          data-wow-delay="0.5s"
-        >
-          <div class="about-text">
-            <h2
-              class="section-title wow fadeInUp"
-              data-wow-duration="1s"
-              data-wow-delay="0.3s"
+        <div class="about-content">
+          <!-- Content loaded by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights Section (Restaurant of the Week + Most Popular Dish) -->
+    <section class="highlights-section">
+      <div class="container">
+        <h2 class="section-title">Weekly <span>Highlights</span></h2>
+        <div class="highlights-grid" id="highlightsGrid">
+          <!-- Content loaded by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Items -->
+    <section class="featured-section">
+      <div class="container">
+        <h2 class="section-title">Featured <span>Items</span></h2>
+        <div class="featured-grid" id="featuredGrid">
+          <!-- Content loaded by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Search & Filter -->
+    <section class="search-container">
+      <div class="container">
+        <div class="search-box">
+          <input
+            type="text"
+            class="search-input"
+            id="searchInput"
+            placeholder="Search restaurants or menu items..."
+          />
+          <div class="filter-container">
+            <button
+              class="filter-btn active"
+              onclick="filterRestaurants('all')"
             >
-              About Calabar Night Bites
-            </h2>
-            <p class="wow fadeInLeft" data-wow-delay="0.2s">
-              Born from the vibrant nightlife of Calabar, we bring the authentic
-              taste of the city's street food right to your doorstep. Our
-              platform connects you with the best local vendors who have been
-              serving delicious meals for generations.
-            </p>
-            <p class="wow fadeInLeft" data-wow-delay="0.2s">
-              We understand the night cravings and the need for quick,
-              delicious, and affordable meals after hours. That's why we've
-              curated a selection of the most popular street foods available for
-              delivery until 4:30AM.
-            </p>
-            <div class="about-stats">
-              <div class="stat wow fadeInRight" data-wow-delay="0.4s">
-                <h3>50+</h3>
-                <p>Menu Items</p>
-              </div>
-              <div class="stat wow fadeInUp" data-wow-delay="0.3s">
-                <h3>4</h3>
-                <p>Top Vendors</p>
-              </div>
-              <div class="stat wow fadeInLeft" data-wow-delay="0.6s">
-                <h3>All Night</h3>
-                <p>Delivery</p>
-              </div>
-            </div>
-          </div>
-          <div class="about-image wow zoomIn" data-wow-delay="0.5s">
-            <img src="img/logo.png" alt="Calabar Market" />
+              All
+            </button>
+            <button class="filter-btn" onclick="filterRestaurants('open')">
+              Open Now
+            </button>
+            <button class="filter-btn" onclick="filterByCategory('all')">
+              All Cuisines
+            </button>
+            <button class="filter-btn" onclick="filterByCategory('local')">
+              Local
+            </button>
+            <button
+              class="filter-btn"
+              onclick="filterByCategory('continental')"
+            >
+              Continental
+            </button>
+            <button class="filter-btn" onclick="filterByCategory('grill')">
+              Grill
+            </button>
+            <button class="filter-btn" onclick="filterByCategory('fast-food')">
+              Fast Food
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="cart-preview" id="cartPreview">
-      <span id="cartCount">0</span> items - ₦<span id="cartTotal">0</span>
-      <button
-        style="background-color: transparent; color: #ffd700; border: none; cursor:pointer;"
-        onclick="toggleCart()"
-      >
-        View Cart
-      </button>
+    <!-- Restaurant Grid -->
+    <section class="restaurant-section">
+      <div class="container">
+        <h2 class="section-title">All <span>Restaurants</span></h2>
+        <div class="restaurant-grid" id="restaurantGrid">
+          <!-- Content loaded by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Ads Section -->
+    <section class="ads-section">
+      <div class="container">
+        <h2 class="section-title">Special <span>Offers</span></h2>
+        <div class="ads-grid">
+          <div
+            class="ad-card ad-1"
+            onclick="
+              showNotification('Use code NIGHT20 for 20% off!', 'success')
+            "
+          >
+            <div class="ad-content">
+              <span class="ad-badge">🔥 LIMITED TIME</span>
+              <h3>Midnight Special</h3>
+              <p>20% OFF all orders between 12am - 4am</p>
+              <p class="ad-small">Use code: <strong>NIGHT20</strong></p>
+              <div class="ad-cta">
+                <span>Claim Offer</span>
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+            <div class="ad-icon">🎉</div>
+          </div>
+
+          <div
+            class="ad-card ad-2"
+            onclick="
+              showNotification(
+                'Free delivery on orders above ₦10,000!',
+                'success',
+              )
+            "
+          >
+            <div class="ad-content">
+              <span class="ad-badge">🚚 FREE DELIVERY</span>
+              <h3>Big Order Bonus</h3>
+              <p>Free delivery on all orders above ₦10,000</p>
+              <p class="ad-small">Valid until month end</p>
+              <div class="ad-cta">
+                <span>Order Now</span>
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+            </div>
+            <div class="ad-icon">💝</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Coming Soon Banner -->
+    <section class="app-banner">
+      <div class="container">
+        <div class="app-banner-content">
+          <h2>📱 Mobile App Coming Soon!</h2>
+          <p>
+            Get ready for a seamless ordering experience on your phone. Faster
+            deliveries, exclusive app-only offers, and easy tracking.
+          </p>
+          <div class="store-buttons">
+            <button
+              class="store-btn"
+              onclick="
+                showNotification('App Store version coming soon!', 'success')
+              "
+            >
+              <i class="fab fa-apple"></i>
+              <div>
+                <div style="font-size: 0.8rem">Download on the</div>
+                <div style="font-size: 1.1rem; font-weight: 700">App Store</div>
+              </div>
+            </button>
+            <button
+              class="store-btn"
+              onclick="
+                showNotification('Google Play version coming soon!', 'success')
+              "
+            >
+              <i class="fab fa-google-play"></i>
+              <div>
+                <div style="font-size: 0.8rem">Get it on</div>
+                <div style="font-size: 1.1rem; font-weight: 700">
+                  Google Play
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Menu Modal -->
+    <div class="modal" id="menuModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalRestaurantName"></h2>
+          <button class="close-modal" onclick="closeModal('menuModal')">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="menu-grid" id="menuGrid">
+            <!-- Menu items loaded by JavaScript -->
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="flash-message" id="flashMessage"></div>
-
-    <div class="container">
-      <h2 class="section-title wow fadeInRight" data-wow-delay="0.4s">
-        On Todays Menu
-      </h2>
-      <p class="section-subtitle wow fadeInUp" data-wow-delay="0.6s">
-        DISCLAIMER: Images are for illustration purposes only, actual food may vary in looks
-      </p>
-      <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'daddyk')">
-          Daddy K's
-        </button>
-        <button class="tab-button" onclick="openTab(event, 'ifeco')">
-          Ifeco Kitchen
-        </button>
-        <button class="tab-button" onclick="openTab(event, 'officepub')">
-          Office Pub Kitchen
-        </button>
-        <button class="tab-button" onclick="openTab(event, 'chefgreen')">
-          Chef Green's Kitchen
-        </button>
-      </div>
-
-      <div id="daddyk" class="tab-content" style="display: block">
-        <h2>Daddy K's</h2>
-        <div class="menu-items">
-          <!-- Items will be loaded here by JavaScript -->
+    <div
+      class="calabarnightbites-modal-overlay"
+      id="calabarnightbitesDeliveryModal"
+    >
+      <div class="calabarnightbites-modal-content">
+        <div class="calabarnightbites-modal-header">
+          <h2 class="calabarnightbites-modal-title">
+            <i class="fas fa-map-marker-alt"></i>Delivery Area Notice
+          </h2>
+          <button
+            class="calabarnightbites-close-button"
+            id="calabarnightbitesCloseModal"
+          >
+            <i class="fas fa-times"></i>
+          </button>
         </div>
-      </div>
 
-      <div id="ifeco" class="tab-content">
-        <h2>Ifeco Kitchen</h2>
-        <div class="menu-items">
-          <!-- Items will be loaded here by JavaScript -->
-        </div>
-      </div>
+        <div class="calabarnightbites-modal-body">
+          <p class="calabarnightbites-modal-message">
+            <i class="fas fa-info-circle calabarnightbites-delivery-icon"></i>
+            CalabarNightBites only delivers to certain areas after (12:00 AM).
+            Please check if your area is listed below after said hour before
+            placing your order.
+          </p>
 
-      <div id="officepub" class="tab-content">
-        <h2>Office Pub (unavailable)</h2>
-        <div class="menu-items">
-          <!-- Items will be loaded here by JavaScript -->
-        </div>
-      </div>
+          <div class="calabarnightbites-delivery-areas">
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Marian Road</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">State Housing</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Etta Agbor</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Parliamentary</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Satellite Town</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Ekorinim</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Diamond Hill</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Aka-Efa</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name">Ikot Ansa</span>
+            </div>
+            <div class="calabarnightbites-area-item">
+              <span class="calabarnightbites-area-name"
+                >All Areas within this circumference</span
+              >
+            </div>
+          </div>
 
-      <div id="chefgreen" class="tab-content">
-        <h2>Chef Green's Kitchen</h2>
-        <div class="menu-items">
-          <!-- Items will be loaded here by JavaScript -->
+          <div class="calabarnightbites-modal-note">
+            <strong>Important:</strong> Delivery is only available to these 10
+            areas during night hours. If your area is not listed, please call
+            <strong>08160549506</strong> for delivery clarification before
+            proceeding to place your order. <br />Thank you for choosing Calabar
+            Night Bites!
+          </div>
         </div>
       </div>
     </div>
@@ -407,402 +362,224 @@
     <!-- Cart Modal -->
     <div class="modal" id="cartModal">
       <div class="modal-content">
-        <span class="close" onclick="toggleCart()">&times;</span>
-        <h2 style="text-align: center; color: #8b0000;">Items In Your Cart</h2>
-        <div class="cart-items" id="cartItems">
-        <!-- Cart items will be loaded here -->
+        <div class="modal-header">
+          <h2>Your Order</h2>
+          <button class="close-modal" onclick="closeModal('cartModal')">
+            &times;
+          </button>
         </div>
-        <div class="cart-summary">
-          <p>Subtotal: ₦<span id="subtotal">0</span></p>
-          <p>Service Fee: ₦<span id="serviceFee">500</span></p>
-          <p>Delivery Fee: ₦<span id="deliveryFee">2500</span></p>
-          <p class="total">Total: ₦<span id="grandTotal">3000</span></p>
+        <div class="modal-body">
+          <div id="cartItems">
+            <!-- Cart items loaded by JavaScript -->
+          </div>
+          <div id="cartEmpty" style="text-align: center; padding: 2rem">
+            <i
+              class="fas fa-shopping-cart"
+              style="font-size: 2.5rem; color: #ccc; margin-bottom: 1rem"
+            ></i>
+            <p>Your cart is empty</p>
+            <p style="color: var(--gray); margin-top: 0.5rem">
+              Add items from restaurants to get started
+            </p>
+          </div>
+          <div id="cartCheckout" style="display: none">
+            <div class="checkout-form">
+              <div class="form-group">
+                <label for="customerName">Full Name *</label>
+                <input
+                  type="text"
+                  id="customerName"
+                  class="form-input"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="customerPhone">Phone Number *</label>
+                <input
+                  type="tel"
+                  id="customerPhone"
+                  class="form-input"
+                  placeholder="0800 000 0000"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="deliveryAddress">Delivery Address *</label>
+                <input
+                  type="text"
+                  id="deliveryAddress"
+                  class="form-input"
+                  placeholder="House number, street, area"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="specialInstructions">Special Instructions</label>
+                <textarea
+                  id="specialInstructions"
+                  class="form-input"
+                  placeholder="Any special requests, allergies, or delivery notes..."
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Delivery Area *</label>
+                <div class="location-options">
+                  <div
+                    class="location-option"
+                    data-location="urban"
+                    onclick="selectLocation('urban')"
+                  >
+                    <h4>Urban Area</h4>
+                    <p>₦2500 delivery fee</p>
+                    <p>Delivery time: 30-45 mins</p>
+                  </div>
+                  <div
+                    class="location-option"
+                    data-location="suburban"
+                    onclick="selectLocation('suburban')"
+                  >
+                    <h4>Sub-Urban Area</h4>
+                    <p>₦3500 delivery fee</p>
+                    <p>Delivery time: 45-60 mins</p>
+                  </div>
+                  <div class="location-option">
+                    <h4>Service Fee</h4>
+                    <p>₦500 service fee</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="payment-info">
+                <h3>Total to Pay</h3>
+                <p
+                  style="
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    color: var(--primary);
+                  "
+                  id="totalAmount"
+                >
+                  ₦0
+                </p>
+                <p>Payment via Bank Transfer</p>
+                <div
+                  style="
+                    margin: 1rem 0;
+                    padding: 1rem;
+                    background: white;
+                    border-radius: 5px;
+                  "
+                >
+                  <p
+                    style="
+                      font-family: monospace;
+                      font-size: 1.1rem;
+                      word-break: break-all;
+                    "
+                  >
+                    6607279314
+                  </p>
+                  <p style="font-size: 0.9rem; margin: 0.5rem 0">
+                    Calabar Night Bites Ltd.
+                  </p>
+                  <button class="copy-btn" onclick="copyAccount()">
+                    <i class="fas fa-copy"></i> Copy Account
+                  </button>
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8">
+                  <i class="fas fa-info-circle"></i> Please transfer the exact
+                  amount and use your name as reference
+                </p>
+                <button
+                  class="menu-btn"
+                  onclick="submitOrder()"
+                  style="margin-top: 1rem"
+                >
+                  <i class="fas fa-paper-plane"></i> Submit Order
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <h2 style="text-align: center; color: #4caf50">Payment Info</h2>
-        <div class="cart-summary">
-          <p>Bank Name: <span>MONIEPOINT MFB</span></p>
-          <p>Account No.: <span>6607279314</span></p>
-          <p>Account Name: <span>Calabar Quickbites</span></p>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal success-modal" id="successModal">
+      <div class="modal-content">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
         </div>
-        <h5 style="text-align: justify; color: #4caf50">
-          Please note that orders are only valid upon payment
-        </h5>
-        <br />
-        <h5 style="text-align: center; text-decoration: underline">
-          Thank you choosing Calabar Night Bights
-        </h5>
-        <button class="checkout-btn" onclick="checkout()">
-          Place Order To Proceed
+        <h2>Order Submitted Successfully!</h2>
+        <p>Your order has been received and is being processed.</p>
+        <p>You will receive a confirmation SMS shortly.</p>
+        <p
+          style="
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(0, 184, 148, 0.1);
+            border-radius: 10px;
+          "
+        >
+          <strong>Order ID:</strong> <span id="orderId">NB123456</span>
+        </p>
+        <button
+          class="menu-btn"
+          onclick="closeModal('successModal')"
+          style="margin-top: 2rem"
+        >
+          Continue Shopping
         </button>
       </div>
     </div>
 
-    <!-- Checkout Form -->
-    <div id="cartPreview"></div>
-    <div id="cartModal"></div>
-    <div class="modal" id="checkoutModal">
-      <div class="modal-content">
-        <span class="close" onclick="closeCheckout()">×</span>
-        <h2 style="text-align: center; color: #8b0000">Complete Your Order</h2>
-        <form id="deliveryForm" onsubmit="sendMail(event)">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" name="name" id="name" required />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" name="phone" id="phone" required />
-          </div>
-          <div class="form-group">
-            <label for="address">Delivery Address</label>
-            <textarea name="address" id="address" required></textarea>
-          </div>
-          <div class="form-group">
-            <label for="instructions">Special Instructions</label>
-            <textarea name="instructions" id="instructions"></textarea>
-          </div>
-          <p style="text-align: center; color: #4caf50">
-            <label for="t&c">Accept Terms & Conditions</label>
-            <input type="checkbox" name="t&c" id="t&c" required />
-          </p>
-          <!-- Hidden inputs for order data -->
-          <input type="hidden" name="items_html" />
-          <input type="hidden" name="subtotal" />
-          <input type="hidden" name="service_fee" />
-          <input type="hidden" name="delivery_fee" />
-          <input type="hidden" name="total" />
-          <input type="hidden" name="date" />
-          <input type="hidden" name="order_id" />
-          <input type="hidden" name="to_email" />
-          <button type="submit">Place Order</button>
-        </form>
-      </div>
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="openModal('cartModal')">
+      <i class="fas fa-shopping-cart"></i>
     </div>
-    <!-- Featured Items -->
-    <section class="featured-section">
-      <div class="container">
-        <h2 class="section-title">Featured Items</h2>
-        <p class="section-subtitle">Customer favorites this week</p>
-        <div class="featured-items"></div>
-        <div class="text-center">
-          <a href="menu.html" class="btn btn-outline">View Full Menu</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Advertisements Section -->
-    <section class="ad-section">
-      <div class="container">
-        <h2 class="section-title wow fadeInLeft" data-wow-delay="0.3s">Special Offers & Adverts</h2>
-        <p class="section-subtitle wow fadeInRight" data-wow-delay="0.4s">Advertise With Us</p>
-
-        <div class="ad-grid">
-          <!-- Ad 1: Fuel Discount -->
-          <div class="ad-card fuel-discount wow fadeInLeft" data-wow-delay="0.4s">
-            <div class="ad-badge">Adverts</div>
-            <div class="ad-content">
-              <img src="img/quickbites.jpg" alt="Fuel Discount" class="ad-image" />
-              <h3>Calabar Quickbites</h3>
-              <p>Centralized food delivery service specially made for calabar</p>
-              <a href="https://quickbites.com.ng" style="text-decoration: none;" class="ad-button">Visit</a>
-            </div>
-          </div>
-
-          <!-- Ad 2: Weather Special -->
-          <div class="ad-card weather-special wow zoomIn" data-wow-delay="0.5s">
-            <div class="ad-badge">CNB Weather Alert</div>
-            <div class="ad-content">
-              <img
-                src="img/logo.png"
-                alt="Rainy Day Special"
-                class="ad-image"
-              />
-              <h3>Rainy Day Special</h3>
-              <p>
-                One free stick of suya with any order over ₦10,000 during heavy
-                rains
-              </p>
-              <a href="menu.html" style="text-decoration: none;" class="ad-button">Order Now</a>
-            </div>
-          </div>
-
-          <!-- Ad 3: Safety Partnership -->
-          <div class="ad-card safety-partner wow fadeInRight" data-wow-delay="0.4s">
-            <div class="ad-badge">Adverts</div>
-            <div class="ad-content">
-              <img src="img/2.png" alt="Safety Partnership" class="ad-image" />
-              <h3>Company Name</h3>
-              <p>Product Description and text</p>
-              <button class="ad-button">contact</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials-section">
-      <div class="container">
-        <h2 class="section-title wow fadeInLeft" data-wow-delay="0.3s">What Our Customers Say</h2>
-        <p class="section-subtitle wow fadeInRight" data-wow-delay="0.5s">Real reviews from happy night owls</p>
-        <div class="testimonials">
-          <div class="testimonial wow fadeInLeft" data-wow-delay="0.4s">
-            <div class="testimonial-content">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p class="wow fadeInLeft" data-wow-delay="0.6s">
-                "Calabar Night Bites saved my midnight cravings! After a long
-                day, I didn’t want to brave the rain or pay crazy Bolt fares.
-                Ordered some Edikang Ikong at 1 AM, and it arrived at my
-                doorstep. The ₦1500 delivery fee is a steal for such
-                convenience. Best part? The food was so hot &amp; fresh, I
-                forgot it was past midnight!"
-              </p>
-            </div>
-            <div class="testimonial-author wow fadeInDown" data-wow-delay="0.6s">
-              <img src="img/testimonial.png" alt="Chioma" />
-              <h4>Amaka E.</h4>
-              <span>Regular Customer</span>
-            </div>
-          </div>
-          <div class="testimonial wow zoomIn" data-wow-delay="0.5s">
-            <div class="testimonial-content">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <p class="wow zoomIn" data-wow-delay="0.7s">
-                "As a student pulling all-nighters, this app is a game-changer.
-                I got Suya and Jollof Rice delivered at 3 AM without worrying
-                about safety or high bolt rates at such hour. The ordering
-                process was smooth, and the confirmation call made me feel
-                secure. Calabar Night Bites is my go-to for late-night
-                munchies!"
-              </p>
-            </div>
-            <div class="testimonial-author wow fadeInUp" data-wow-delay="0.7s">
-              <img src="img/testimonial.png" alt="Emeka" />
-              <h4>Emeka O.</h4>
-              <span>Medical Student</span>
-            </div>
-          </div>
-          <div class="testimonial wow fadeInRight" data-wow-delay="0.4s">
-            <div class="testimonial-content">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p class="wow fadeInRight" data-wow-delay="0.6s">
-                "I was skeptical about food delivery at night in Calabar, but
-                Calabar Night Bites nailed it. The Grilled Fish I ordered at 10
-                PM was delicious, and the service fee is totally worth skipping
-                the hassle of rainy streets or sketchy roads. The survey form
-                let me share my thoughts, and I love that they care about
-                customer feedback!"
-              </p>
-            </div>
-            <div class="testimonial-author wow fadeInLeft" data-wow-delay="0.6s">
-              <img src="img/testimonial.png" alt="Amina" />
-              <h4>Esther B.</h4>
-              <span>Night Nurse</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="cta-section">
-      <div class="container">
-        <h2 class="wow fadeInLeft" data-wow-delay="0.3s">Ready to satisfy your late-night cravings?</h2>
-        <p class="wow fadeInDown" data-wow-delay="0.5s">Download our app for exclusive deals and faster ordering</p>
-        <h2 class="wow rotateIn" data-wow-delay="0.7s" style="color: #4caf50">COMMING SOON!!!</h2>
-        <div class="cta-buttons">
-          <a href="#" class="btn btn-app">
-            <i class="fab fa-apple"></i>
-            <span>Download on the<br /><strong>App Store</strong></span>
-          </a>
-          <a href="#" class="btn btn-app">
-            <i class="fab fa-google-play"></i>
-            <span>Get it on<br /><strong>Google Play</strong></span>
-          </a>
-        </div>
-      </div>
-    </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
       <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <h3>Calabar Night Bites</h3>
-            <p>
-              Bringing Calabar's vibrant street food culture to your doorstep,
-              day or night.
-            </p>
-            <div class="social-links">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
+        <div class="footer-content">
+          <p
+            style="
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: var(--primary);
+              margin-bottom: 1rem;
+            "
+          >
+            Calabar Night Bites
+          </p>
+          <p>© 2025 Calabar Night Bites. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="#"><i class="fas fa-phone"></i> 08160549506-CALABAR</a>
+            <a href="#"
+              ><i class="fas fa-envelope"></i>calabarnightbites@gmail.com</a
+            >
+            <a href="#"
+              ><i class="fas fa-map-marker-alt"></i> Calabar, Nigeria</a
+            >
+            <a href="#"><i class="fas fa-clock"></i> 7:00 PM - 4:30 AM Daily</a>
           </div>
-          <div class="footer-col">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="menu.html">Menu</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="survey.html">Feedback</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3>Contact Us</h3>
-            <ul class="contact-info">
-              <li>
-                <i class="fas fa-map-marker-alt"></i> 42 Marian Road, Calabar
-              </li>
-              <li><i class="fas fa-phone"></i> +234 816 054 9506</li>
-              <li>
-                <i class="fas fa-envelope"></i> calabarnightbites@gmail.com
-              </li>
-              <li><i class="fas fa-clock"></i> Open 07:00PM - 4:30AM</li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3>Newsletter</h3>
-            <p>Subscribe for weekly deals and updates</p>
-            <form class="newsletter-form">
-              <input type="email" placeholder="Your email address" required />
-              <button type="submit"><i class="fas fa-paper-plane"></i></button>
-            </form>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 Calabar Night Bites. All Rights Reserved.</p>
-          <p style="color: #4caf50;"><a href=""> Powered by BellaTECH NG.</a></p>
-          </div>
+          <p style="margin-top: 1.5rem; opacity: 0.8; font-size: 0.9rem">
+            Satisfying your late-night cravings since 2024
+          </p>
         </div>
       </div>
     </footer>
 
-     <div class="calabarnightbites-modal-overlay" id="calabarnightbitesDeliveryModal">
-        <div class="calabarnightbites-modal-content">
-            <div class="calabarnightbites-modal-header">
-                <h2 class="calabarnightbites-modal-title">
-                    <i class="fas fa-map-marker-alt"></i>Delivery Area Notice
-                </h2>
-                <button class="calabarnightbites-close-button" id="calabarnightbitesCloseModal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="calabarnightbites-modal-body">
-                <p class="calabarnightbites-modal-message">
-                    <i class="fas fa-info-circle calabarnightbites-delivery-icon"></i>
-                    CalabarNightBites only delivers to certain areas during night hours (7 PM - 4:30 AM). 
-                    Please check if your area is listed below before placing your order.
-                </p>
-                
-                
-                <div class="calabarnightbites-delivery-areas">
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">Marian Road</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">State Housing</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">Etta Agbor</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">Parliamentary</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">Satellite Town</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">Ekorinim</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">Diamond Hill</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">Aka-Efa</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">Ikot Ansa</span>
-                    </div>
-                    <div class="calabarnightbites-area-item">
-                        <span class="calabarnightbites-area-name">All Areas within this circumference</span>
-                    </div>
-                </div>
-                
-                <div class="calabarnightbites-modal-note">
-                    <strong>Important:</strong> Delivery is only available to these 10 areas during night hours. 
-                    If your area is not listed, please call <strong>08160549506</strong> for delivery clarification before proceeding to place your order.
-                    <br>Thank you for choosing Calabar Night Bites!
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Order Confirmation Modal -->
-    <div class="modal" id="confirmationModal" style="display: none">
-      <div class="modal-content" style="max-width: 400px">
-        <div class="modal-header">
-          <h3>Order Confirmed! 🎉</h3>
-        </div>
-        <div class="modal-body">
-          <i
-            class="fas fa-check-circle"
-            style="font-size: 48px; color: #4caf50; margin-bottom: 20px"
-          ></i>
-          <p>
-            We'll call you at <strong>${phone}</strong> to process your
-            delivery.
-          </p>
-          <p>Thank you for choosing Calabar Night Bites!</p>
-        </div>
-        <div class="modal-footer">
-          <button onclick="closeConfirmationModal()" class="btn-confirm">
-            Got it!
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-
-    <script>
-      new WOW().init();
-    </script>
-
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
-    <script>
-      emailjs.init("_PEwD_ZbRO1EoYbHU");
-    </script>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="js/restaurants.js"></script>
+    <script src="js/script.js"></script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
       var Tawk_API = Tawk_API || {},
@@ -819,55 +596,58 @@
     </script>
     <!--End of Tawk.to Script-->
 
-     <script>
-        // JavaScript to handle the pop-up - ADD THIS TO YOUR EXISTING JS FILE
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get modal and close button elements
-            const deliveryModal = document.getElementById('calabarnightbitesDeliveryModal');
-            const closeButton = document.getElementById('calabarnightbitesCloseModal');
-            
-            // Show the modal after a short delay (when page loads)
-            setTimeout(() => {
-                if (deliveryModal) {
-                    deliveryModal.style.display = 'flex';
-                }
-            }, 1000); // 1 second delay
-            
-            // Close modal when close button is clicked
-            if (closeButton) {
-                closeButton.addEventListener('click', function() {
-                    if (deliveryModal) {
-                        deliveryModal.style.opacity = '0';
-                        setTimeout(() => {
-                            deliveryModal.style.display = 'none';
-                        }, 400);
-                    }
-                });
-            }
-            
-            // Close modal when clicking outside the content
+    <script>
+      // JavaScript to handle the pop-up - ADD THIS TO YOUR EXISTING JS FILE
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get modal and close button elements
+        const deliveryModal = document.getElementById(
+          "calabarnightbitesDeliveryModal",
+        );
+        const closeButton = document.getElementById(
+          "calabarnightbitesCloseModal",
+        );
+
+        // Show the modal after a short delay (when page loads)
+        setTimeout(() => {
+          if (deliveryModal) {
+            deliveryModal.style.display = "flex";
+          }
+        }, 1000); // 1 second delay
+
+        // Close modal when close button is clicked
+        if (closeButton) {
+          closeButton.addEventListener("click", function () {
             if (deliveryModal) {
-                deliveryModal.addEventListener('click', function(event) {
-                    if (event.target === deliveryModal) {
-                        deliveryModal.style.opacity = '0';
-                        setTimeout(() => {
-                            deliveryModal.style.display = 'none';
-                        }, 400);
-                    }
-                });
+              deliveryModal.style.opacity = "0";
+              setTimeout(() => {
+                deliveryModal.style.display = "none";
+              }, 400);
             }
-            
-            const hasSeenModal = localStorage.getItem('calabarnightbitesModalSeen');
-            if (!hasSeenModal) {
-                setTimeout(() => {
-                    if (deliveryModal) {
-                        deliveryModal.style.display = 'flex';
-                    }
-                }, 1000);
-                localStorage.setItem('calabarnightbitesModalSeen', 'true');
+          });
+        }
+
+        // Close modal when clicking outside the content
+        if (deliveryModal) {
+          deliveryModal.addEventListener("click", function (event) {
+            if (event.target === deliveryModal) {
+              deliveryModal.style.opacity = "0";
+              setTimeout(() => {
+                deliveryModal.style.display = "none";
+              }, 400);
             }
-            
-        });
+          });
+        }
+
+        const hasSeenModal = localStorage.getItem("calabarnightbitesModalSeen");
+        if (!hasSeenModal) {
+          setTimeout(() => {
+            if (deliveryModal) {
+              deliveryModal.style.display = "flex";
+            }
+          }, 1000);
+          localStorage.setItem("calabarnightbitesModalSeen", "false");
+        }
+      });
     </script>
   </body>
 </html>
