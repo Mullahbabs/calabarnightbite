@@ -45,7 +45,7 @@ function generateFeaturedItems() {
     }
   });
 
-  // Ensure we have at least 4 featured items
+  // Always ensure we have at least 4 featured items
   while (featuredItems.length < 4 && restaurants.length > 0) {
     restaurants.forEach((restaurant) => {
       if (featuredItems.length < 4 && restaurant.menu.length > 0) {

@@ -469,7 +469,7 @@
         "description": "Pumpkin leaves and waterleaf soup",
         "basePrice": 2200,
         "minPrice": 2200,
-        "popular": true
+        "popular": false
       },
       {
         "id": 66,
@@ -586,7 +586,7 @@
     "image": "/img/deluxe.jpg",
     "rating": 4.8,
     "deliveryTime": "35-50 min",
-    "closingTime": "04:00",
+    "closingTime": "01:00",
     "status": "open",
     "featured": true,
     "description": "Premium dining experience with a diverse menu from local delicacies to continental favorites",
